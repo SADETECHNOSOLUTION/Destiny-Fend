@@ -1,0 +1,595 @@
+import React,{useState,useEffect, useCallback} from 'react'
+import { Link, NavLink,useLocation } from 'react-router-dom'
+import { Icon } from '@iconify/react/dist/iconify.js';
+import { useDispatch } from 'react-redux';
+// import { changePhoto } from '../slices/photoslice';
+import { changecoverPhoto } from '../slices/photoslice';
+import { IoClose } from 'react-icons/io5'
+import { useParams } from 'react-router-dom';
+import Modal from 'react-modal';
+import { updatePhoto } from '../slices/photoslice';
+
+const ProfileheaderUser = () => {
+  const [imageForm,setImageForm] = useState(false);
+  const [coverForm,setCoverForm] = useState(false);
+  const [file, setFile] = useState(null);
+  const dispatch = useDispatch();
+  // const {coverpic} = useSelector((state)=>state.photo)
+  const userId = localStorage.getItem('userId')
+  const { userID } = useParams(); // Get userId from URL params
+  // const [isFollowed,setIsFollowed] = useState(false);
+  // const [following,setFollowing] = useState();
+  // const [isFollowing,setisFollowing] = useState()
+  const [sentrequest,setSentRequest] = useState()
+  const [isRequested,setIsRequested] = useState()
+  // const [friends,setFriends] = useState()
+  const [options,setOptions] = useState(false)
+  const [profile,setProfile] = useState(null)
+  const [profilepic,setProfilepic] = useState(profile?.user.profileImagePath)
+
+  const handleOptions = ()=>{
+    setOptions(!options)
+  }
+
+  const fetchProfile = useCallback(async()=>{
+    const token = localStorage.getItem('token')
+    try{
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/home/api/aggregate/${userID}`, {
+        method: 'GET',
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      });
+      if(response.ok){
+        const data = await response.json()
+        setProfile(data)
+      }
+    }
+    catch(error){
+    console.error('Error fetching user data:', error);
+    }
+  },[userID])
+
+
+
+  const closeOptions = ()=>{
+    setOptions(false)
+  }
+
+  const openImageForm = ()=>{
+    setImageForm(true);
+  }
+
+  const openCoverForm = ()=>{
+    setCoverForm(true);
+  }
+
+  const closeImageForm =()=>{
+    setImageForm(false)
+    setProfilepic(profile?.user.profileImagePath)
+  }
+
+  const closeCoverForm =()=>{
+    setCoverForm(false)
+  }
+  
+  const handleImageChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfilepic(reader.result);
+        setFile(selectedFile);
+        dispatch(updatePhoto(selectedFile))
+      };
+      reader.readAsDataURL(selectedFile); 
+    }
+  };
+
+  const cancelImage = () => {
+    closeImageForm();
+  };
+
+  const cancelCover = ()=>{
+    closeCoverForm();
+  }
+
+
+    const location = useLocation();
+    const isActive = (path) => {
+      return location.pathname === path;
+    };
+      // const isCurrentUser = parseInt(userID) === userId;
+    const menu = [
+        {id:1,
+        name:'Profile',
+        path:`/user/${userID}/profile`},
+        {id:2,
+        name:'Timeline',
+        path:`/timelineview/${userID}/timeline`},
+        {id:3,
+        name:'Friends',
+        path:`/friendsview/${userID}/friends`},
+        {id:4,
+        name:'Photos',
+        path:`/photosview/${userID}/photos`},
+        {id:5,
+        name:'Videos',
+        path:`/videosview/${userID}/videos`},
+        ]
+
+        const handlechangeCover = (event)=>{
+          const selectedFile = event.target.files[0];
+          if (selectedFile) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              dispatch(changecoverPhoto(reader.result)); 
+              setFile(selectedFile); 
+            };
+            reader.readAsDataURL(selectedFile);
+          }
+        }
+        // const fetchUserDetails = useCallback(async () => {
+        //   try {
+        //     const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/${userID}`, {
+        //       method: 'GET',
+        //     });
+        //     setUser(response.data);
+        //   } catch (error) {
+        //     console.error("Error fetching user details:", error);
+        //   }
+        // },[userID]);
+
+        // const handleFollowStatus = useCallback((data) => {
+        //   // Assuming data has a list of followers
+        //   setIsFollowed(data.users.some((follower) => follower.id === userId));
+        // },[userId]);
+
+        // const fetchFollowers = useCallback(async () => {
+        //   try {
+        //     const token = localStorage.getItem('token');
+        //     if (!token) {
+        //       console.error('No token found in localStorage');
+        //       return;
+        //     }
+        //     const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/api/followers/${userID}`, {
+        //       method: 'GET',
+        //       headers: {
+        //         'Authorization': `Bearer ${token}`,
+        //       },
+        //     });
+    
+        //     if (response.ok) {
+        //       const data = await response.json();
+        //       setFollowers(data);
+        //       // Check if the user is followed
+        //       handleFollowStatus(data); 
+        //       console.log(isFollowed)
+        //     } else {
+        //       console.error('Failed to fetch user data:', response.status);
+        //     }
+        //   } catch (error) {
+        //     console.error('Error fetching user data:', error);
+        //   }
+        // },[handleFollowStatus,isFollowed,userID]);
+
+// const fetchFollowing = useCallback(async () => {
+// try {
+//   const token = localStorage.getItem('token');
+//   if (!token) {
+//     console.error('No token found in localStorage');
+//     return;
+//   }
+//   const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/api/following/${userID}`, {
+//     method: 'GET',
+//     headers: {
+//       'Authorization': `Bearer ${token}`,
+//     },
+//   });
+
+//   if (response.ok) {
+//     const data = await response.json();
+//     setFollowing(data);
+//     fetchProfile()
+//     // Check if the user is followed
+//     setisFollowing(data.users.some((follower) => follower.id === userId));
+//     console.log(isFollowing)
+//   } else {
+//     console.error('Failed to fetch user data:', response.status);
+//   }
+// } catch (error) {
+//   console.error('Error fetching user data:', error);
+// }
+// },[isFollowing,userID,userId]);
+
+const fetchRequest = useCallback(async () => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found in localStorage');
+      return;
+    }
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${userId}/sent-requests`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+  
+    if (response.ok) {
+      const data = await response.json();
+      setSentRequest(data);
+      // Check if the user is followed
+      setIsRequested(data.sentRequests.find((follower) => follower.recipientId === parseInt(userID)));
+    } else {
+      console.error('Failed to fetch user data:', response.status);
+    }
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+  },[userID,userId]);
+  useEffect(()=>{
+    fetchProfile()
+    fetchRequest()
+  },[fetchProfile,fetchRequest])
+
+  // const fetchfriends = useCallback(async () => {
+  //   try {
+  //     const token = localStorage.getItem('token');
+  //     if (!token) {
+  //       console.error('No token found in localStorage');
+  //       return;
+  //     }
+  //     const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${isCurrentUser ? userId:userID}/friends`, {
+  //       method: 'GET',
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,
+  //       },
+  //     });
+      
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       setFriends(data);
+  //       // Check if the user is followed
+  //       console.log(friends)
+  //     } else {
+  //       console.error('Failed to fetch user data:', response.status);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching user data:', error);
+  //   }
+  //   },[friends,isCurrentUser,userID,userId]);
+
+        const followUser = async ()=>{
+          const token = localStorage.getItem('token')
+          try{
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/follow/${userId}/${userID}`,{
+              method:'POST',
+              headers:{
+                'Authorization':`Bearer ${token}`
+              }
+            })
+            if(response.ok){
+              console.log('')
+              fetchProfile()
+            }
+            else{
+              console.log('error in posting data')
+            }
+          }
+          catch(error){
+            console.error(error)
+          }
+        }
+
+// Run this effect whenever userID or userId changes
+        
+        // const updateProfile = async()=>{
+        //   try{
+        //     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}/profile-image`,{
+        //       method:'PATCH',
+        //     })
+        //     if(response.ok){
+        //       console.log('')
+        //       fetchFollowers()
+        //       fetchFollowing()
+        //     }
+        //     else{
+        //       console.log('error in posting data')
+        //     }
+        //   }
+        //   catch(error){
+        //     console.error(error)
+        //   }
+        // }   
+        
+        const sendRequest = async ()=>{
+          const token = localStorage.getItem('token')
+          const payload={
+            senderId:userId,
+            recipientId:userID
+          }
+          try{
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/send?senderId=${userId}&recipientId=${userID}`,{
+              method:'POST',
+              headers:{
+                'Authorization':`Bearer ${token}`
+              },
+              body:JSON.stringify(payload)
+            })
+            if(response.ok){
+              console.log(sentrequest)
+              fetchRequest()
+            }
+            else{
+              console.log('error in posting data')
+            }
+          }
+          catch(error){
+            console.error(error)
+          }
+        }
+
+        const cancelRequest = async ()=>{
+          const token = localStorage.getItem('token')
+          const payload={
+            senderId:userId,
+            recipientId:userID
+          }
+          try{
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/decline?senderId=${userId}&recipientId=${userID}`,{
+              method:'POST',
+              headers:{
+                'Authorization':`Bearer ${token}`
+              },
+              body:JSON.stringify(payload)
+            })
+            if(response.ok){
+              console.log('')
+              fetchRequest()
+            }
+            else{
+              console.log('error in posting data')
+            }
+          }
+          catch(error){
+            console.error(error)
+          }
+        }
+
+        const unfollowUser = async ()=>{
+          const token = localStorage.getItem('token')
+          try{
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/unfollow/${userId}/${userID}`,{
+              method:'DELETE',
+              headers:{
+                'Authorization':`Bearer ${token}`
+              }
+            })
+            if(response.ok){
+              console.log('')
+              fetchProfile()
+            }
+            else{
+              console.log('error in posting data')
+            }
+          }
+          catch(error){
+            console.error(error)
+          }
+        }
+
+        
+        const updateProfilePic = async()=>{
+          const token = localStorage.getItem('token')
+          try {
+            const formdata = new FormData();
+            formdata.append('profileImagePath',file)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}/profile-image`, {
+              method: 'PATCH',
+              body:formdata,
+              headers:{
+                'Authorization':`Bearer ${token}`
+              }
+            });
+      
+            if (response.ok) {
+            closeImageForm()
+            } else {
+              console.error('Failed to fetch user data:', response.status);
+              // Optionally handle different status codes (e.g., unauthorized, not found)
+            }
+          } catch (error) {
+            console.error('Error fetching user data:', error);
+          }
+        }
+
+        const updatecoverPic = async()=>{
+          const token = localStorage.getItem('token')
+          try {
+            const formdata = new FormData();
+            formdata.append('bannerImagePath',file)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}/banner-image`, {
+              method: 'PATCH',
+             body:formdata,
+             headers:{
+              'Authorization':`Bearer ${token}`
+             }
+            });
+      
+            if (response.ok) {
+            closeCoverForm()
+            } else {
+              console.error('Failed to fetch user data:', response.status);
+              // Optionally handle different status codes (e.g., unauthorized, not found)
+            }
+          } catch (error) {
+            console.error('Error fetching user data:', error);
+          }
+        }
+
+    const unFriend = async (unfriendId)=>{
+      const token = localStorage.getItem('token')
+      try{
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/delete-friend/${userId}/${unfriendId}`,{
+          method:'DELETE',
+          headers:{
+            'Authorization':`Bearer ${token}`
+          },
+        })
+        if(response.ok){
+          console.log('')
+          fetchProfile()
+          closeOptions()
+        }
+        else{
+          console.log('error in posting data')
+        }
+      }
+      catch(error){
+        console.error(error)
+      }
+    }
+    
+    const isfollowing = profile?.followers?.users?.find((follow)=>follow.id === parseInt(userId));
+    const isFriends = profile?.friendListAndCount?.friends?.find((friends)=> friends.id === parseInt(userId))
+  return (
+    <div>
+    <Modal  appElement={document.getElementById('root')}
+style={{
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      backgroundColor:'transparent',
+      transform: 'translate(-50%, -50%)',
+      width: '80%',
+      height: '60%',
+      overflowY: 'auto',
+      border:'none'
+    },}}
+    isOpen={imageForm} onRequestClose={closeImageForm}>
+  <div className='bg-white h-96 ml-72 w-1/2 flex rounded-lg shadow-lg flex-col items-center gap-4'>
+  <div className='flex mt-4 px-4 w-full items-center justify-between'><p className='text-lg font-semibold'>Change Profile picture</p><div onClick={closeImageForm} className='p-1 cursor-pointer hover:bg-red hover:text-white rounded-full bg-gray-100'><IoClose className='w-5 h-5' /></div></div>
+  <div className='w-full h-full flex flex-col gap-4 items-center justify-center'>
+    <div className='flex cursor-pointer justify-center items-center gap-8'>
+<img className='h-28 w-28 rounded-full' src={profilepic ? profilepic: profile?.user.profileImagePath} alt=''/><label className="relative cursor-pointer rounded-md px-3 py-2  border border-cta text-white bg-cta border">
+<button className='cursor-pointer text-sm'>Upload an Image</button>
+<input type="file" accept='image/*' onChange={handleImageChange} className="absolute inset-0 opacity-0 cursor-pointer" />
+</label></div>
+<div className='flex gap-4'>
+<button onClick={cancelImage} className='p-2 border border-gray-300 hover:border-none hover:bg-gray-100 rounded-md'>Cancel</button>
+<button className='p-2 hover:bg-cta text-cta hover:text-white rounded-md border border-cta' onClick={updateProfilePic}>Submit</button>
+</div>
+</div>
+</div>
+</Modal>
+<Modal  appElement={document.getElementById('root')}
+style={{
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      backgroundColor:'transparent',
+      transform: 'translate(-50%, -50%)',
+      width: '80%',
+      height: '60%',
+      overflowY: 'auto',
+      border:'none'
+    },}}
+    isOpen={coverForm} onRequestClose={closeCoverForm}>
+  <div className='bg-white h-96 ml-72 w-1/2 flex rounded-lg shadow-lg flex-col items-center gap-4'>
+  <div className='flex mt-4 px-4 w-full items-center justify-between'><p className='text-lg font-semibold'>Change Cover picture</p><div onClick={closeCoverForm} className='p-1 cursor-pointer hover:bg-red hover:text-white rounded-full bg-gray-100'><IoClose className='w-5 h-5' /></div></div>
+  <div className='w-full h-full flex flex-col gap-4 items-center justify-center'>
+    <div className='flex cursor-pointer justify-center items-center gap-8'>
+<img className='h-28 w-28 rounded-full' src={profile?.user.bannerImagePath} alt=''/><label className="relative cursor-pointer rounded-md px-3 py-2  border border-cta text-white bg-cta border">
+<button className='cursor-pointer text-sm'>Upload an Image</button>
+<input type="file" accept='image/*' onChange={handlechangeCover} className="absolute inset-0 opacity-0 cursor-pointer" />
+</label></div>
+<div className='flex gap-4'>
+<button onClick={cancelCover} className='p-2 border border-gray-300 hover:border-none hover:bg-gray-100 rounded-md'>Cancel</button>
+<button className='p-2 hover:bg-cta text-cta hover:text-white rounded-md border border-cta' onClick={updatecoverPic}>Submit</button>
+</div>
+</div>
+</div>
+</Modal>
+<div className='w-full flex items-center justify-center'>
+<div className='flex w-5/6 flex items-center justify-center'>
+  <div style={{backgroundImage:`url('${process.env.REACT_APP_API_URL}${profile?.user.bannerImagePath}')`}} alt={profile?.user.bannerImagePath} className='flex flex-col relative border w-full h-96 mt-4 bg-cover bg-center  bg-no-repeat gap-4 justify-end'>
+    {userID === userId && ( <div onClick={openCoverForm} className='absolute right-4 top-4 flex gap-2 items-center rounded-md cursor-pointer px-2 py-1 bg-white bg-opacity-40'><Icon icon="mdi:camera" width="1.2em" height="1.2em"  style={{color: ''}} /><span className='font-semibold'>Change cover photo</span> </div>
+    )} 
+  <div className='absolute right-0 top-0 p-2'>
+    </div>
+<div className='flex px-11 items-center'>
+       <div>
+        <img  className='w-36 border-4 border-gray-300e h-36 rounded-full' alt='' src={`${process.env.REACT_APP_API_URL}${profile?.user.profileImagePath}`} /></div> 
+       {userID === userId && <div onClick={openImageForm} className='absolute justify-end mt-20 ml-28 flex text-cta bg-cta hover:text-cta border border-cta cursor-pointer items-center justify-center py-1.5 w-min px-1.5 rounded-full bg-white'><Icon icon="mdi:camera" width="1.2em" height="1.2em"  style={{color: ''}} /></div>}
+        </div>
+    <div className='flex flex-wrap justify-between relative md:px-11 sm:px-6 items-center md:w-full sm:w-auto h-20 bg-white'>
+        <div className='flex flex-col'>
+                <div>
+                <p className='text-xl text-cta font-semibold'>{profile?.user.name}</p>
+                </div>
+                <p className='text-gray-500'>{profile?.user.country}</p>
+        </div>
+        {/* <NavLink to='/profession'><span className='cursor-pointer text-lg hover:text-cta font-semibold'>Profession</span></NavLink> */}
+        <div className='flex gap-12'>
+        {menu.map((items)=>(
+                <div key={items.id}>
+              <NavLink to={{ pathname: items.path, state: { profile } }} className={`text-lg hover:text-cta font-semibold ${isActive(items.path) ? 'active-link' : ''}`}  ><p className='text-lg hover:text-cta'>{items.name}</p></NavLink>
+                </div> 
+                    ))}
+        </div>
+        <div className='flex items-center gap-6 font-semibold'>
+        <Link to={`/${userID}/following`}>
+        <div className='flex items-center flex-col'>
+        <span>Following</span>
+        <span>{profile?.following?.count}</span>
+        </div></Link>
+        <Link to={`/${userID}/followers`}>
+        <div className='flex items-center flex-col'>
+        <span>Followers</span>
+        <span>{profile?.followers?.count}</span>
+        </div></Link>
+        </div>
+        {userID === userId ? (<div className='p-2 bg-gray-50 cursor-pointer rounded-full'><Icon icon="system-uicons:menu-vertical" width="1.2em" height="1.2em"  /></div>) : (
+        <div className='flex gap-8'>
+          <div className='relative'>
+        <div className='flex gap-1 cursor-pointer items-center justify-center w-32 rounded-md h-10 bg-cta hover:opacity-85 text-white'>
+        {isFriends? <div onClick={handleOptions} className='flex items-center gap-1'><Icon className='w-4 h-4' icon="fa-solid:user-friends" />Friends</div>:isRequested? <div onClick={cancelRequest} className='flex items-center gap-1 font-semibold'><Icon className='w-5 h-5' icon="material-symbols:person-cancel-rounded" /> <span>Cancel</span></div> : <div onClick={sendRequest} className='flex items-center gap-1 font-semibold'><Icon className='w-4 h-4' icon="mingcute:user-add-fill" /><span>Add Friend</span></div>}
+          </div>  
+          {options && <div className='absolute flex flex-col p-2 shadow-lg w-32'>
+            <span onClick={()=>{unFriend(profile?.user.id)}} className='flex cursor-pointer items-center gap-1 py-1 text-sm justify-center' ><Icon className='text-cta' icon="icon-park-solid:people-delete-one" width="1.2em" height="1.2em" />Unfriend</span>
+            <span className='flex items-center cursor-pointer gap-1 py-1 text-sm justify-center'>Block</span></div>}
+</div>
+{isfollowing? (
+    <button onClick={unfollowUser} key={profile?.user.id} className=' flex gap-1 cursor-pointer items-center justify-center w-32 rounded-md hover:opacity-85 h-10 bg-cta text-white'>
+      <Icon className='w-5 h-5 font-semibold' icon="charm:tick" />
+      <span  className='font-semibold'>Following</span>
+    </button>
+  ) : (
+    <button onClick={followUser}  key={profile?.user.id} className=' flex gap-1 cursor-pointer items-center justify-center w-32 rounded-md hover:opacity-85 h-10 bg-cta text-white'>
+      <Icon className='w-5 h-5 font-semibold' icon="ic:sharp-add" />
+      <span className='font-semibold'>Follow</span>
+    </button>
+          )}
+        </div>)}
+    </div>
+  </div>
+  </div>
+  </div>
+
+</div>
+  )
+}
+
+export default ProfileheaderUser;
+
+
+
+
+

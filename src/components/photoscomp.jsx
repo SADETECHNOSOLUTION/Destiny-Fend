@@ -1,0 +1,63 @@
+import React from 'react'
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+import { Icon } from '@iconify/react/dist/iconify.js';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+
+const Photoscomp = ({ profile}) => {
+  const { userID } = useParams();
+  const responsive = {
+    0:   { items: 1 },
+    600: { items: 2 },
+    1024:{ items: 3 },
+    1600:{ items: 3 },
+  };
+  
+  const renderNextButton = ({ isDisabled, onClick }) => (
+    <button
+        className="absolute p-2 flex hover:bg-cta hover:text-white items-center justify-center bg-gray-100 rounded-full right-8 bottom-32"
+        onClick={onClick}
+        disabled={isDisabled}
+    >
+<Icon icon="grommet-icons:next" />    
+</button>
+);
+
+
+const renderBackButton = ({ isDisabled, onClick }) => (
+    <button
+        className="absolute p-2 hover:bg-cta hover:text-white bg-gray-100 rounded-full -left-11 bottom-32"
+        onClick={onClick}
+        disabled={isDisabled}
+    >
+<Icon icon="ic:twotone-arrow-back-ios" /> </button>
+);
+  return (
+    <div className='flex py-4 px-6 drop bg-white shadow-lg  rounded-md h-auto gap-3 flex-col'>
+    <div className='flex justify-between font-semibold items-center'>
+           <span className='text-lg'>Photos ({profile?.imagePosts.length})</span> <Link to={`/photosview/${userID}`}><span className='cursor-pointer text-cta text-sm'>See All</span></Link>
+            </div>
+            <div className='flex  flex-col'>
+              <div className='flex gap-2 ml-10 h-auto items-center py-2'>
+                {profile?.imagePosts.length >0 && (
+                                  <AliceCarousel disableDotsControls renderPrevButton={renderBackButton} renderNextButton={renderNextButton} responsive={responsive} items={profile?.imagePosts.map((photo)=>(
+                                    <div className='inline-block rounded-md overflow-hidden'>
+                                    <img className='w-64 h-64 object-cover cursor-pointer transition-transform duration-300 transform hover:scale-110 hover:opacity-90' alt='imagpg' src={`${process.env.REACT_APP_API_URL}${photo.imageUrl}`} />
+                                    </div>
+                                   ))}>
+                                    </AliceCarousel> 
+                )}
+                {profile?.imagePosts.length ===0 && (
+                  <div className='w-full flex justify-center h-auto font-semibold'>
+                    No Images available
+                  </div>
+                )}
+              </div>
+              </div>
+              
+    </div> 
+  )
+}
+
+export default Photoscomp
