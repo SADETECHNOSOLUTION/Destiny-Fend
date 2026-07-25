@@ -18,7 +18,7 @@ const Following = ()=>{
           console.error('No token found in localStorage');
           return;
         }
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/api/following/${userID}`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/follows/api/following/${userID}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -54,7 +54,7 @@ fetchFollowing()
     const unfollowUser = async (followId)=>{
       const token = localStorage.getItem('token')
       try{
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/unfollow/${userId}/${followId}`,{
+        const response = await fetch(`https://destiny-apigateway.onrender.com/follows/unfollow/${userId}/${followId}`,{
           method:'DELETE',
           headers:{
             'Authorization':`Bearer ${token}`
@@ -105,7 +105,7 @@ fetchFollowing()
             {filteredFollowing.map((Following)=>(
             <div key={Following.id} className="flex w-[48rem] shadow-md justify-between py-2 px-8 items-center">
             <div className="flex items-center gap-2">
-            <img className="w-16 h-16 rounded-full" src={`${process.env.REACT_APP_API_URL}${Following.profileImagePath}`} alt=''/>
+            <img className="w-16 h-16 rounded-full" src={`https://destiny-apigateway.onrender.com${Following.profileImagePath}`} alt=''/>
             <p className="text-lg w-24 truncate">{Following.name}</p>
             </div>
             <span> {Following.work} </span>

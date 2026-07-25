@@ -34,7 +34,7 @@ const Profile = () => {
         return;
       }
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

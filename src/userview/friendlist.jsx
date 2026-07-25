@@ -39,7 +39,7 @@ const Friendview = () => {
   const fetchdata = useCallback(async()=>{
     const token = localStorage.getItem('token')
     try{
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userID}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userID}`, {
         method: 'GET',
         headers:{
           'Authorization':`Bearer ${token}`
@@ -100,7 +100,7 @@ const changePrivacy = async(privacy)=>{
   }
   const token = localStorage.getItem('token')
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}/visibility?visibility=${privacy}`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userId}/visibility?visibility=${privacy}`, {
       method: 'PATCH',
       body:JSON.stringify(payload),
       headers:{
@@ -169,7 +169,7 @@ const isCurrentUser = parseInt(userID) === parseInt(userId);
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${userId}/friends`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/${userId}/friends`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -195,7 +195,7 @@ const isCurrentUser = parseInt(userID) === parseInt(userId);
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${isCurrentUser ? userId:userID}/friends`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/${isCurrentUser ? userId:userID}/friends`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -279,9 +279,9 @@ const isCurrentUser = parseInt(userID) === parseInt(userId);
         <div key={friend.id}>
           <div className='flex flex-col h-72 rounded-md border border-gray-200 rounded-md w-[17.6rem]'>
             <div className="relative">
-              <img className="w-full h-28" src={`${process.env.REACT_APP_API_URL}${friend.bannerImagePath}`} alt="" />
+              <img className="w-full h-28" src={`https://destiny-apigateway.onrender.com${friend.bannerImagePath}`} alt="" />
               <div className="absolute -mt-10 ml-2 flex items-center">
-                <img className="rounded-full w-16 h-16 border-2 border-white" alt="" src={`${process.env.REACT_APP_API_URL}${friend.profileImagePath}`} />
+                <img className="rounded-full w-16 h-16 border-2 border-white" alt="" src={`https://destiny-apigateway.onrender.com${friend.profileImagePath}`} />
               </div>
             </div>
             <div className='flex px-4 flex-col mt-5 gap-3 py-4'>

@@ -130,7 +130,7 @@ const Availability = ()=>{
         const fetchDropdown = async () => {
           try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/get-dropdown/679c71512ed40716813fb231`, {
+            const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/get-dropdown/679c71512ed40716813fb231`, {
               method: 'GET',
               headers: {
                 'Authorization': `Bearer ${token}`,

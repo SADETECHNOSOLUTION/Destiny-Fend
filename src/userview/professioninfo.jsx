@@ -31,7 +31,7 @@ const ProfessionalInfo = () => {
         e.preventDefault();
         try {
             console.log(formData);
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/register`, {
+            const response = await fetch(`https://destiny-apigateway.onrender.com/auth/register`, {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {

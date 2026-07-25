@@ -121,7 +121,7 @@ const Home = () => {
   const fetchUserProfile = async () => {
     const token = localStorage.getItem('token');
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/adminuser/get-profile`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/adminuser/get-profile`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`

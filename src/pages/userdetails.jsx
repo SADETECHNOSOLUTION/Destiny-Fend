@@ -35,7 +35,7 @@ const UserDetails = () => {
   const fetchProfile = useCallback(async () => {
     const token = localStorage.getItem('token')
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/home/api/aggregate/${userID}`,{
+      const response = await axios.get(`https://destiny-apigateway.onrender.com/home/api/aggregate/${userID}`,{
         headers:{
           Authorization:`Bearer ${token}`
         }

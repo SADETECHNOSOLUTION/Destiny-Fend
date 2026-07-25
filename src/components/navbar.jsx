@@ -81,7 +81,7 @@ const fetchUserName = useCallback(async () => {
       return;
     }
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userId}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -108,21 +108,21 @@ const fetchNotification = useCallback(async () => {
           return;
       }
 
-      const followApi = await fetch(`${process.env.REACT_APP_API_URL}/follows/notifications/${userId}`, {
+      const followApi = await fetch(`https://destiny-apigateway.onrender.com/follows/notifications/${userId}`, {
           method: 'GET',
           headers: {
               'Authorization': `Bearer ${token}`,
           },
       });
 
-      const requestApi = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/notifications/${userId}`, {
+      const requestApi = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/notifications/${userId}`, {
           method: 'GET',
           headers: {
               'Authorization': `Bearer ${token}`,
           },
       });
 
-      const likeApi = await fetch(`${process.env.REACT_APP_API_URL}/likes/notification/${userId}`, {
+      const likeApi = await fetch(`https://destiny-apigateway.onrender.com/likes/notification/${userId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -130,7 +130,7 @@ const fetchNotification = useCallback(async () => {
     });
 
     
-    const commentApi = await fetch(` ${process.env.REACT_APP_API_URL}/comments/notification-comment/post-reply/${userId}`, {
+    const commentApi = await fetch(` https://destiny-apigateway.onrender.com/comments/notification-comment/post-reply/${userId}`, {
       method: 'GET',
       headers: {
           'Authorization': `Bearer ${token}`,
@@ -168,7 +168,7 @@ const fetchNotification = useCallback(async () => {
 //       console.error('No token found in localStorage');
 //       return;
 //     }
-//     const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/notifications/1`, {
+//     const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/notifications/1`, {
 //       method: 'GET',
 //       headers: {
 //         'Authorization': `Bearer ${token}`,
@@ -247,7 +247,7 @@ const handleLogout = ()=>{
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${userId}/pending-requests`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/${userId}/pending-requests`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -271,7 +271,7 @@ const handleLogout = ()=>{
       const token = localStorage.getItem('token')
       setChat({ messages: [] }); // Reset chat state initially
       try {
-         const response = await fetch(`${process.env.REACT_APP_API_URL}/web-socket/getAll`, {
+         const response = await fetch(`https://destiny-apigateway.onrender.com/web-socket/getAll`, {
             method: 'GET',
             headers:{
               'Authorization':`Bearer ${token}`
@@ -290,7 +290,7 @@ const handleLogout = ()=>{
    
    const deleteNotifications = async (id,type)=>{
     try{
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/notification/${id}/${type}`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/notification/${id}/${type}`,{
         method: 'DELETE',
         headers:{
           'Authorization' : `Bearer ${token}`
@@ -308,7 +308,7 @@ const handleLogout = ()=>{
 
     const fetchUsers = useCallback(async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/api/users`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -322,7 +322,7 @@ const handleLogout = ()=>{
     },[token]);
     const fetchHeader = useCallback(async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/settings/get-setting/1`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/settings/get-setting/1`, {
           method: 'GET',
           headers:{
             'Authorization':`Bearer ${token}`
@@ -377,7 +377,7 @@ const handleLogout = ()=>{
         recipientId:acceptID
       }
       try{
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/accept?senderId=${acceptID}&recipientId=${userId}`,{
+        const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/accept?senderId=${acceptID}&recipientId=${userId}`,{
           method:'POST',
           headers:{
             'Authorization':`Bearer ${token}`
@@ -404,7 +404,7 @@ const handleLogout = ()=>{
         recipientId:cancelID
       }
       try{
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/decline?senderId=${cancelID}&recipientId=${userId}`,{
+        const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/decline?senderId=${cancelID}&recipientId=${userId}`,{
           method:'POST',
           headers:{
             'Authorization':`bearer${token}`
@@ -446,7 +446,7 @@ const handleLogout = ()=>{
       <div className='flex items-center gap-8'>
         <div className='flex items-center gap-20'>
       <div className='flex items-center'>
-        <NavLink to='/newsfeed'><img className='w-19 h-9 ' src={`${process.env.REACT_APP_API_URL}${header.logoImage}`} alt='logo' /></NavLink>
+        <NavLink to='/newsfeed'><img className='w-19 h-9 ' src={`https://destiny-apigateway.onrender.com${header.logoImage}`} alt='logo' /></NavLink>
       </div>
         </div>
         <div className='flex items-center gap-8'>
@@ -546,7 +546,7 @@ const handleLogout = ()=>{
                           <div className='flex justify-between items-center'>
                           <NavLink to={`${item.postId? `/post/${userId}/${item.postId}`:``}`}>    <div className='flex gap-2 items-center'>
                               <div>
-                          <img className='rounded-full w-8 h-8' alt='alt' src={`${process.env.REACT_APP_API_URL}${item.profileImagePath}`} />
+                          <img className='rounded-full w-8 h-8' alt='alt' src={`https://destiny-apigateway.onrender.com${item.profileImagePath}`} />
                           </div>
                           <div className='flex gap-1'>
                             <div className='hover:text-cta'>{item.name}</div> 
@@ -610,7 +610,7 @@ const handleLogout = ()=>{
                 <div className='flex justify-between items-center'>
                     <div className='flex gap-2 w-full items-center'>
                         <div>
-                            <img className='rounded-full w-9 h-9' alt='alt' src={`${process.env.REACT_APP_API_URL}${item?.profileImagePath}`} />
+                            <img className='rounded-full w-9 h-9' alt='alt' src={`https://destiny-apigateway.onrender.com${item?.profileImagePath}`} />
                         </div>
                         <div className='flex w-full flex-col'>
                             <div className='hover:text-cta w-max'>{item.name}</div>
@@ -656,7 +656,7 @@ const handleLogout = ()=>{
         </div> */}
 {activeSection === 'settings' && dropdowns.submenu && (
   <div ref={dropdownRef} className="absolute duration-500 slide-in-down top-16 right-0 w-52  flex flex-col justify-center bg-white shadow-lg ">
-    <button onClick={openProfile} className='cursor-pointer  gap-1 flex items-center py-4 px-6 hover:bg-gray-100'>  <img alt='' className='h-7 w-7 rounded-full' src={`${process.env.REACT_APP_API_URL}${user.profileImagePath}`} /> <span className='font-semibold '>{user.name}</span> </button>
+    <button onClick={openProfile} className='cursor-pointer  gap-1 flex items-center py-4 px-6 hover:bg-gray-100'>  <img alt='' className='h-7 w-7 rounded-full' src={`https://destiny-apigateway.onrender.com${user.profileImagePath}`} /> <span className='font-semibold '>{user.name}</span> </button>
     {dropdowns.submenu.map((item) => (
       <NavLink to={item.path}><div key={item.id} onClick={closeDropdown} className="cursor-pointer  gap-1 flex items-center py-2 px-4 hover:bg-gray-100">
       <span className='p-2 rounded-full bg-white'>{item.icon}</span>  <span className='text-sm '>{item.title}</span>

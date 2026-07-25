@@ -44,7 +44,7 @@ const Resetpassword = () => {
       confirmPassword
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/reset-password`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/reset-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

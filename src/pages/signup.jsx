@@ -64,7 +64,7 @@ const Signup = () => {
       const userdata = { ...user, phoneNumber: formattedPhoneNumber, role: 'USER' ,otp:formattedOTP };
       console.log(formattedOTP)
       console.log('Sending data:', JSON.stringify(userdata));
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/verifyOtp`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/verifyOtp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ const Signup = () => {
         console.log('Form data submitted successfully');
         setUser({ name: '', email: '', phoneNumber: '', password: '', confirmPassword: '' });
         handlecloseotp()
-        setTimeout(() => navigate('/'), 5000);
+        setTimeout(() => navigate('/gw'), 5000);
         setOtp(Array(6).fill(''));
       } 
       else {
@@ -115,7 +115,7 @@ const Signup = () => {
       const formattedPhoneNumber = country ? `${country.code}${user.phoneNumber}` : `+91${user.phoneNumber}`;
       const userdata = { ...user, phoneNumber: formattedPhoneNumber, role: 'USER' };
       console.log('Sending data:', JSON.stringify(userdata));
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

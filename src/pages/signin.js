@@ -107,7 +107,7 @@ const Signin = () => {
      const fetchUserdata = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/api/users`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -132,7 +132,7 @@ const Signin = () => {
       const token = localStorage.getItem('token');
       const userProfile = await fetchUserProfile();
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/getBy-email?email=${userProfile.email}`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/getBy-email?email=${userProfile.email}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -162,7 +162,7 @@ const Signin = () => {
         try {
           console.log('Sending payload:', JSON.stringify(payload));
           // Send the OTP request
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/forgot-password`, {
+          const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/forgot-password`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -221,7 +221,7 @@ const Signin = () => {
         try {
 
 
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
+          const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/login`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -304,7 +304,7 @@ const Signin = () => {
 
     try {
       console.log('Sending data:', JSON.stringify(payload));
-      const response = await fetch(`${process.env.API_URL}/api/auth/login-with-otp`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/login-with-otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -365,14 +365,15 @@ const Signin = () => {
         <>
          <div style={{fontFamily:'revert-layer'}}  className="relative bg-[image-url]  min-h-screen justify-center items-center bg-gradient-to-tr from-span-start to-span-end flex flex-col ">
           <div  className='w-full text-font-mono flex items-center justify-between'>
-            <div className='flex flex-col bg-white h-screen items-center justify-center  w-1/2'>
-              <img className='w-96 h-38' src='logo.png' alt='logo' />
+            <div className='relative flex flex-col bg-white h-screen items-center justify-center  w-1/2'>
+              <img className='absolute top-56 w-96 h-38' src='logo.png' alt='logo' />
+                <img className='absolute -bottom-12 w-full h-80' src='filmcity.png' alt='background' />
             </div>
             <div className='w-1/2 flex items-center justify-center'>
             <form onSubmit={handleSubmit} className='flex custom:text-sm default:text-base flex-col bg-white px-4 rounded-md justify-center items-center md:w-3/5 '>
               <div className='flex flex-wrap mt-6 w-full justify-center items-center gap-5 mb-6'>
           <div className='flex gap-2'>
-          <input onChange={handleChange} className='checked:bg-blue-500  form-radio' type="radio" name="option" checked={true} value="Individual" />
+          <input onChange={handleChange} className='checked:bg-[#817AEB]  form-radio' type="radio" name="option" checked={true} value="Individual" />
           <label>Individual</label>
           </div><span>|</span>
           <div className='flex gap-2'>
@@ -521,14 +522,14 @@ const Signin = () => {
   </div>
 </Modal>
 
-<div className="absolute  bg-gradient-to-tr from-span-start to-span-end bottom-0 flex flex-col w-full sm:items-center py-2 sm:gap-2 md:flex-row md:justify-center md:gap-3.5">
+{/* <div className="absolute  bg-gradient-to-tr from-span-start to-span-end bottom-0 flex flex-col w-full sm:items-center py-2 sm:gap-2 md:flex-row md:justify-center md:gap-3.5">
   {info.map((detail, index) => (
     <React.Fragment key={index}>
       <NavLink to={detail.path}><p className="cursor-pointer custom:text-sm default:text-base hover:text-white">{detail.heading}</p></NavLink>
       {index !== info.length - 1 && <span className="hidden md:inline-block">|</span>}
     </React.Fragment>
   ))}
-</div>
+</div> */}
 <ToastContainer />
          </div>
         </>

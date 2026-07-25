@@ -67,6 +67,12 @@ import Musicdirector from './pages/about4.js';
 import AboutProducer from './pages/about5.js';
 import AboutArtdirection from './pages/about6.js';
 import AboutChoreo from './pages/about7.js';
+import ProfileFormWizard from './pages/demowizard.js'
+import Dashboard from './admindashboard/dashboard';
+import ProfileForm from './pages/profileform.js';
+import LoginWizard from './pages/wizardlogin.js';
+import LoginAdminWizard from './pages/wizardadminlogin.js';
+import AdminDashboard from './pages/dashboard.js';
 
 Modal.setAppElement('#root');
 
@@ -99,6 +105,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Signin />} />
+        <Route path='/adminlogin' element={<LoginAdminWizard />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/department' element={<Department />} />
         <Route path='/forgotpassword' element={<Forgotpassword />} />
@@ -110,6 +117,7 @@ function App() {
         <Route path='/forgotpassword2' element={<Forgotpassword2 />} />
         <Route path="/newsfeed" element={<DefaultWithNavbar><Home /></DefaultWithNavbar>} />
         <Route path='/messages' element={<Messages />} />
+        <Route path='/FormWizard' element={<ProfileFormWizard />} />
         <Route path='/scroll' element={<HorizontalScrollGallery />} />
         <Route path='messages/:messagesId' element={<MessageDetails data={data} />} />
         <Route path='/notifications/:userID' element={<DefaultWithNavbar><DefaultWithHeaderUser><Notifications /></DefaultWithHeaderUser></DefaultWithNavbar>} />
@@ -131,12 +139,15 @@ function App() {
         <Route path='/professionview/:userID' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><ProfessionPost /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>}/>
         <Route path='/photosview/:userID/photos' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><PhotosUser /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>}/>
         <Route path='/profilehead' element={<ProfileheaderUser />}/>
+                <Route path='/profileWizard' element={<ProfileForm/>}/>
+                <Route path='/Dashboardview' element={<Dashboard/>}/>
         <Route path='/uploadstory' element={<StoryUpload />}/>
         <Route path='/addfriends' element={<Addfriends />}/>
         <Route path='/videosview/:userID/videos' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><VideosUser /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>} />
         <Route path='/profileview' element={<DefaultWithNavbar><DefaultWithHeaderUser><ProfileView /></DefaultWithHeaderUser></DefaultWithNavbar>}/>
         <Route path='/friendsview/:userID/friends' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><Friendview /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>} />
         <Route path='*' element={<ErrorPage />} />
+                <Route path='/login' element={<LoginWizard />} />
         <Route path='test' element={ <Sliper />} />
         <Route path='/Reels/:userID/reel' element={<DefaultWithNavbar><DisplayReels /></DefaultWithNavbar>} />
         <Route path='/chat' element={<Chat />} />
@@ -155,6 +166,8 @@ function App() {
         <Route path='/costume' element={<AboutCostume />} />
         <Route path='/choreo' element={<AboutChoreo />} />
         <Route path='/Producer' element={<AboutProducer />} />
+        <Route path='/Dashboard' element={<AdminDashboard />} />
+        <Route path='/profileform' element={<ProfileForm />} />
         <Route path='/art' element={<AboutArtdirection />} />
         <Route path='/cinematographer' element={<Aboutmod />} />
         <Route path='/Profession/Professiontype' element={<ProfessionType />} />

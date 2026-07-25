@@ -34,7 +34,7 @@ const ProfileheaderUser = () => {
   const fetchProfile = useCallback(async()=>{
     const token = localStorage.getItem('token')
     try{
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/home/api/aggregate/${userID}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/home/api/aggregate/${userID}`, {
         method: 'GET',
         headers:{
           Authorization:`Bearer ${token}`
@@ -131,7 +131,7 @@ const ProfileheaderUser = () => {
         }
         // const fetchUserDetails = useCallback(async () => {
         //   try {
-        //     const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/${userID}`, {
+        //     const response = await axios.get(`https://destiny-apigateway.onrender.com/api/users/${userID}`, {
         //       method: 'GET',
         //     });
         //     setUser(response.data);
@@ -152,7 +152,7 @@ const ProfileheaderUser = () => {
         //       console.error('No token found in localStorage');
         //       return;
         //     }
-        //     const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/api/followers/${userID}`, {
+        //     const response = await fetch(`https://destiny-apigateway.onrender.com/follows/api/followers/${userID}`, {
         //       method: 'GET',
         //       headers: {
         //         'Authorization': `Bearer ${token}`,
@@ -180,7 +180,7 @@ const ProfileheaderUser = () => {
 //     console.error('No token found in localStorage');
 //     return;
 //   }
-//   const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/api/following/${userID}`, {
+//   const response = await fetch(`https://destiny-apigateway.onrender.com/follows/api/following/${userID}`, {
 //     method: 'GET',
 //     headers: {
 //       'Authorization': `Bearer ${token}`,
@@ -209,7 +209,7 @@ const fetchRequest = useCallback(async () => {
       console.error('No token found in localStorage');
       return;
     }
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${userId}/sent-requests`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/${userId}/sent-requests`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -240,7 +240,7 @@ const fetchRequest = useCallback(async () => {
   //       console.error('No token found in localStorage');
   //       return;
   //     }
-  //     const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${isCurrentUser ? userId:userID}/friends`, {
+  //     const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/${isCurrentUser ? userId:userID}/friends`, {
   //       method: 'GET',
   //       headers: {
   //         'Authorization': `Bearer ${token}`,
@@ -263,7 +263,7 @@ const fetchRequest = useCallback(async () => {
         const followUser = async ()=>{
           const token = localStorage.getItem('token')
           try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/follow/${userId}/${userID}`,{
+            const response = await fetch(`https://destiny-apigateway.onrender.com/follows/follow/${userId}/${userID}`,{
               method:'POST',
               headers:{
                 'Authorization':`Bearer ${token}`
@@ -286,7 +286,7 @@ const fetchRequest = useCallback(async () => {
         
         // const updateProfile = async()=>{
         //   try{
-        //     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}/profile-image`,{
+        //     const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userId}/profile-image`,{
         //       method:'PATCH',
         //     })
         //     if(response.ok){
@@ -310,7 +310,7 @@ const fetchRequest = useCallback(async () => {
             recipientId:userID
           }
           try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/send?senderId=${userId}&recipientId=${userID}`,{
+            const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/send?senderId=${userId}&recipientId=${userID}`,{
               method:'POST',
               headers:{
                 'Authorization':`Bearer ${token}`
@@ -337,7 +337,7 @@ const fetchRequest = useCallback(async () => {
             recipientId:userID
           }
           try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/decline?senderId=${userId}&recipientId=${userID}`,{
+            const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/decline?senderId=${userId}&recipientId=${userID}`,{
               method:'POST',
               headers:{
                 'Authorization':`Bearer ${token}`
@@ -360,7 +360,7 @@ const fetchRequest = useCallback(async () => {
         const unfollowUser = async ()=>{
           const token = localStorage.getItem('token')
           try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/follows/unfollow/${userId}/${userID}`,{
+            const response = await fetch(`https://destiny-apigateway.onrender.com/follows/unfollow/${userId}/${userID}`,{
               method:'DELETE',
               headers:{
                 'Authorization':`Bearer ${token}`
@@ -385,7 +385,7 @@ const fetchRequest = useCallback(async () => {
           try {
             const formdata = new FormData();
             formdata.append('profileImagePath',file)
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}/profile-image`, {
+            const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userId}/profile-image`, {
               method: 'PATCH',
               body:formdata,
               headers:{
@@ -409,7 +409,7 @@ const fetchRequest = useCallback(async () => {
           try {
             const formdata = new FormData();
             formdata.append('bannerImagePath',file)
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}/banner-image`, {
+            const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userId}/banner-image`, {
               method: 'PATCH',
              body:formdata,
              headers:{
@@ -431,7 +431,7 @@ const fetchRequest = useCallback(async () => {
     const unFriend = async (unfriendId)=>{
       const token = localStorage.getItem('token')
       try{
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/delete-friend/${userId}/${unfriendId}`,{
+        const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/delete-friend/${userId}/${unfriendId}`,{
           method:'DELETE',
           headers:{
             'Authorization':`Bearer ${token}`
@@ -519,14 +519,14 @@ style={{
 </Modal>
 <div className='w-full flex items-center justify-center'>
 <div className='flex w-5/6 flex items-center justify-center'>
-  <div style={{backgroundImage:`url('${process.env.REACT_APP_API_URL}${profile?.user.bannerImagePath}')`}} alt={profile?.user.bannerImagePath} className='flex flex-col relative border w-full h-96 mt-4 bg-cover bg-center  bg-no-repeat gap-4 justify-end'>
+  <div style={{backgroundImage:`url('https://destiny-apigateway.onrender.com${profile?.user.bannerImagePath}')`}} alt={profile?.user.bannerImagePath} className='flex flex-col relative border w-full h-96 mt-4 bg-cover bg-center  bg-no-repeat gap-4 justify-end'>
     {userID === userId && ( <div onClick={openCoverForm} className='absolute right-4 top-4 flex gap-2 items-center rounded-md cursor-pointer px-2 py-1 bg-white bg-opacity-40'><Icon icon="mdi:camera" width="1.2em" height="1.2em"  style={{color: ''}} /><span className='font-semibold'>Change cover photo</span> </div>
     )} 
   <div className='absolute right-0 top-0 p-2'>
     </div>
 <div className='flex px-11 items-center'>
        <div>
-        <img  className='w-36 border-4 border-gray-300e h-36 rounded-full' alt='' src={`${process.env.REACT_APP_API_URL}${profile?.user.profileImagePath}`} /></div> 
+        <img  className='w-36 border-4 border-gray-300e h-36 rounded-full' alt='' src={`https://destiny-apigateway.onrender.com${profile?.user.profileImagePath}`} /></div> 
        {userID === userId && <div onClick={openImageForm} className='absolute justify-end mt-20 ml-28 flex text-cta bg-cta hover:text-cta border border-cta cursor-pointer items-center justify-center py-1.5 w-min px-1.5 rounded-full bg-white'><Icon icon="mdi:camera" width="1.2em" height="1.2em"  style={{color: ''}} /></div>}
         </div>
     <div className='flex flex-wrap justify-between relative md:px-11 sm:px-6 items-center md:w-full sm:w-auto h-20 bg-white'>

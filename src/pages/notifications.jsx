@@ -16,28 +16,28 @@ const Notifications = () => {
             return;
         }
   
-        const followApi = await fetch(`${process.env.REACT_APP_API_URL}/follows/notifications/${userId}`, {
+        const followApi = await fetch(`https://destiny-apigateway.onrender.com/follows/notifications/${userId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
         });
   
-        const requestApi = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/notifications/${userId}`, {
+        const requestApi = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/notifications/${userId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
         });
   
-        const likeApi = await fetch(`${process.env.REACT_APP_API_URL}/likes/notification/${userId}`, {
+        const likeApi = await fetch(`https://destiny-apigateway.onrender.com/likes/notification/${userId}`, {
           method: 'GET',
           headers: {
               'Authorization': `Bearer ${token}`,
           },
       });
 
-      const commentApi = await fetch(` ${process.env.REACT_APP_API_URL}/comments/notification-comment/post-reply/${userId}`, {
+      const commentApi = await fetch(` https://destiny-apigateway.onrender.com/comments/notification-comment/post-reply/${userId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -68,7 +68,7 @@ const Notifications = () => {
   const deleteNotifications = async (id,type)=>{
     const token = localStorage.getItem('token')
     try{
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/notification/${id}/${type}`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/notification/${id}/${type}`,{
         method: 'DELETE',
         headers:{
           'Authorization':`Bearer ${token}`
@@ -124,7 +124,7 @@ const Notifications = () => {
 <div key={notify.id} className='flex cursor-pointer text-sm hover:bg-gray-50 notification-item border-b justify-between border-gray-170 py-4 items-center'>
 <NavLink to={`${notify.postId? `/post/${userId}/${notify.postId}`:``}`}>    <div className='flex items-center gap-3'>
           <div>
-            <img className='h-9 w-9 rounded-full' alt='' src={`${process.env.REACT_APP_API_URL}${notify.profileImagePath}`} />
+            <img className='h-9 w-9 rounded-full' alt='' src={`https://destiny-apigateway.onrender.com${notify.profileImagePath}`} />
           </div>
           <div className='flex flex-col'>
             <p>

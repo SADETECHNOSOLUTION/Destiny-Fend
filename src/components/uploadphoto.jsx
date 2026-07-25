@@ -27,7 +27,7 @@ const Postphoto = ({setphoto,close,file }) => {
   //       return;
   //     }
 
-  //     const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/${userId}`, {
+  //     const response = await fetch(`https://destiny-apigateway.onrender.com/posts/${userId}`, {
   //       method: 'GET',
   //       headers: {
   //         'Authorization': `Bearer ${token}`,
@@ -60,7 +60,7 @@ const Postphoto = ({setphoto,close,file }) => {
           console.error('No token found in localStorage');
           return;
         }
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/user/${userID}/images`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/posts/user/${userID}/images`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -116,7 +116,7 @@ const Postphoto = ({setphoto,close,file }) => {
     }
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/posts`, {
         method: 'POST',
         body: formDataObj,
         headers:{

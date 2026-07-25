@@ -43,7 +43,7 @@ const renderBackButton = ({ isDisabled, onClick }) => (
                 {profile?.imagePosts.length >0 && (
                                   <AliceCarousel disableDotsControls renderPrevButton={renderBackButton} renderNextButton={renderNextButton} responsive={responsive} items={profile?.imagePosts.map((photo)=>(
                                     <div className='inline-block rounded-md overflow-hidden'>
-                                    <img className='w-64 h-64 object-cover cursor-pointer transition-transform duration-300 transform hover:scale-110 hover:opacity-90' alt='imagpg' src={`${process.env.REACT_APP_API_URL}${photo.imageUrl}`} />
+                                    <img className='w-64 h-64 object-cover cursor-pointer transition-transform duration-300 transform hover:scale-110 hover:opacity-90' alt='imagpg' src={`https://destiny-apigateway.onrender.com${photo.imageUrl}`} />
                                     </div>
                                    ))}>
                                     </AliceCarousel> 

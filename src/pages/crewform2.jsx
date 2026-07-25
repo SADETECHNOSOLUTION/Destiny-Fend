@@ -95,7 +95,7 @@ const handleInputChange = (e) => {
         const fetchDropdown = async () => {
           try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/get-dropdown/6794aba9b7957e027a5cd301`, {
+            const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/get-dropdown/6794aba9b7957e027a5cd301`, {
               method: 'GET',
               headers: {
                 'Authorization': `Bearer ${token}`,

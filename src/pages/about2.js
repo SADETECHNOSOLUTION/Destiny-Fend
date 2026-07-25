@@ -147,7 +147,6 @@ const educationData = [
 
 
 
-
       const social = {
         media:[{
           id:1,
@@ -571,7 +570,7 @@ const tools = [
   const fetchProfile = useCallback(async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/get-all-details/1`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/get-all-details/1`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -839,7 +838,7 @@ const handleMouseEnter = (e) => {
     }
     const token = localStorage.getItem('token')
     try{
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/1/skills?newSkill=${interest}&isAdd=${option}`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/1/skills?newSkill=${interest}&isAdd=${option}`,{
         method:'PATCH',
         headers:{
           'Authorization':`Bearer ${token}`
@@ -867,7 +866,7 @@ const handleMouseEnter = (e) => {
     }
     const token = localStorage.getItem('token')
     try{
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/1/techniques?newTechniques=${technique}&isAdd=${option}`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/1/techniques?newTechniques=${technique}&isAdd=${option}`,{
         method:'PATCH',
         headers:{
           'Authorization':`Bearer ${token}`
@@ -895,7 +894,7 @@ const handleMouseEnter = (e) => {
     }
     const token = localStorage.getItem('token')
     try{
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/1/Hobbies?hobbies=${hobbies}&isAdd=${option}`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/1/Hobbies?hobbies=${hobbies}&isAdd=${option}`,{
         method:'PATCH',
         headers:{
           'Authorization':`Bearer ${token}`

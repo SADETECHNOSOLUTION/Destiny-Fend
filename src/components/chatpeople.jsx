@@ -8,7 +8,7 @@ const Messagelist = ({handleSelectMessage})=>{
     const fetchUsers = async () => {
       const token = localStorage.getItem('token')
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/api/users`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -49,7 +49,7 @@ const Messagelist = ({handleSelectMessage})=>{
                         <div key={message.id} className={`h-24 cursor-pointer border-gray-300 border-b rounded-md flex items-center px-4 ${location.pathname.includes(message.id) ? "active" : ""}`}
   style={location.pathname.includes(message.id) ? { backgroundColor: '#5CBE8F',color:'#fff' } : null}>
                             <div className="flex items-center  gap-2">
-                                <img className="md:w-9 h-9 rounded-full" src={`${process.env.REACT_APP_API_URL}${message.profileImagePath}`} alt={message.profileImagePath} />
+                                <img className="md:w-9 h-9 rounded-full" src={`https://destiny-apigateway.onrender.com${message.profileImagePath}`} alt={message.profileImagePath} />
                                 <div className="flex  flex-col gap-1"> 
                                 <span className="font-semibold w-1/2 truncate ">{message.name}</span>
                                 <span className="md:w-40 w-full block truncate">{message.message}</span>

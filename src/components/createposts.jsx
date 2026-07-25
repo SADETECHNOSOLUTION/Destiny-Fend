@@ -136,7 +136,7 @@ const Createposts = () => {
     }
    const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/posts`, {
         method: 'POST',
         body: formDataObj,
         headers:{
@@ -167,7 +167,7 @@ const Createposts = () => {
   const fetchUserDetails = useCallback( async () => {
     const token = localStorage.getItem('token')
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
+      const response = await axios.get(`https://destiny-apigateway.onrender.com/api/users/${userId}`, {
         method: 'GET',
         headers: {
         'Authorization': `Bearer ${token}`
@@ -193,7 +193,7 @@ const Createposts = () => {
       <p className='font-semibold py-2'>Create post</p>
 
       <div className='w-full flex gap-2'>
-      <img className='w-9 h-9 rounded-full' src={`${process.env.REACT_APP_API_URL}${user.profileImagePath}`} alt='' />
+      <img className='w-9 h-9 rounded-full' src={`https://destiny-apigateway.onrender.com${user.profileImagePath}`} alt='' />
       <input className='w-full border border-gray-400 rounded-md h-16'
         value=''
         onClick={handleOpen}

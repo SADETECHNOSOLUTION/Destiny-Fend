@@ -118,7 +118,7 @@ const GeneralInfo = ({section}) => {
         const token = localStorage.getItem('token');
     
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/createUserWithImages`, formDataObj, {
+            const response = await axios.post(`https://destiny-apigateway.onrender.com/api/users/createUserWithImages`, formDataObj, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data', // This ensures the server knows you're sending FormData

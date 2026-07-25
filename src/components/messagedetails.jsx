@@ -44,7 +44,7 @@ const MessageDetails = () => {
    const fetchUsers = async () => {
       const token = localStorage.getItem('token')
       try {
-         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
+         const response = await fetch(`https://destiny-apigateway.onrender.com/api/users`, {
             method: 'GET',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -60,7 +60,7 @@ const MessageDetails = () => {
     setChat({ messages: [] }); // Reset chat state initially
     const token = localStorage.getItem('token')
     try {
-       const response = await fetch(`${process.env.REACT_APP_API_URL}/web-socket/conversation?participantOneId=${userId}&participantTwoId=${messagesId}`, {
+       const response = await fetch(`https://destiny-apigateway.onrender.com/web-socket/conversation?participantOneId=${userId}&participantTwoId=${messagesId}`, {
           method: 'GET',
           headers:{
             'Authorization':`Bearer ${token}`
@@ -117,7 +117,7 @@ const MessageDetails = () => {
    const token = localStorage.getItem('token')
    setChat({ messages: [] }); // Reset chat state initially
    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/web-socket/getAll`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/web-socket/getAll`, {
          method: 'GET',
          headers:{
             'Authorization':`Bearer ${token}`
@@ -163,7 +163,7 @@ console.log(messages)
 const deleteMessageForSelf = async (messageId) => {
    const token = localStorage.getItem('token')
    try {
-     const response = await axios.delete(`${process.env.REACT_APP_API_URL}/web-socket/delete-for-self/${messageId}`, {
+     const response = await axios.delete(`https://destiny-apigateway.onrender.com/web-socket/delete-for-self/${messageId}`, {
        params: { userId },
        headers:{
          'Authorization': `Bearer ${token}`
@@ -185,7 +185,7 @@ const deleteMessageForSelf = async (messageId) => {
  const deleteMessageForEveryone = async (messageId) => {
    const token = localStorage.getItem('token')
    try {
-     const response = await axios.delete(`${process.env.REACT_APP_API_URL}/web-socket/delete-for-everyone/${messageId}`, {
+     const response = await axios.delete(`https://destiny-apigateway.onrender.com/web-socket/delete-for-everyone/${messageId}`, {
       params: { userId },
       headers:{
          'Authorization': `Bearer ${token}`
@@ -254,7 +254,7 @@ const message = users.find(user => user.id === parseInt(messagesId));
                 <div className='flex justify-between items-center'>
                     <div className='flex gap-2 w-full items-center'>
                       
-                            <img className='rounded-full w-11 h-11' alt='alt' src={`${process.env.REACT_APP_API_URL}${item?.profileImagePath}`} />
+                            <img className='rounded-full w-11 h-11' alt='alt' src={`https://destiny-apigateway.onrender.com${item?.profileImagePath}`} />
                         <div className='flex w-full flex-col'>
                             <div className=' text-lg w-max'>{item.name}</div>
                             <div className='flex w-full items-center justify-between'>
@@ -275,7 +275,7 @@ const message = users.find(user => user.id === parseInt(messagesId));
             <div className="flex flex-col w-full">
                <div className="flex items-center bg-cta text-white px-7 justify-between h-16">
                   <div className="flex items-center gap-2">
-                     <img className="w-11 h-11 rounded-full" src={`${process.env.REACT_APP_API_URL}${message?.profileImagePath}`} alt={message?.profileImagePath} />
+                     <img className="w-11 h-11 rounded-full" src={`https://destiny-apigateway.onrender.com${message?.profileImagePath}`} alt={message?.profileImagePath} />
                      <span className="font-semibold">{message?.name}</span>
                   </div>
                   <div className="flex items-center gap-4">
@@ -313,7 +313,7 @@ const message = users.find(user => user.id === parseInt(messagesId));
           <div className="relative contain-r w-44 rounded-md group inline-block cursor-pointer h-[16rem] overflow-hidden">
             <div key={msg.id} style={{backgroundImage:`url(${msg.content})`}} className="inline-block cursor-pointer rounded-lg w-56 h-[16rem]">
               <ReactPlayer 
-                url={`${process.env.REACT_APP_API_URL}${msg.content}`}  // Replace with your video URL
+                url={`https://destiny-apigateway.onrender.com${msg.content}`}  // Replace with your video URL
                 controls={false} // Hide controls if desired
                 width='200%'
                 height='100%'
@@ -404,7 +404,7 @@ const message = users.find(user => user.id === parseInt(messagesId));
                      <div>
                         <div key={message?.id}>
                            <div className="flex flex-col items-center justify-center gap-2 w-full h-56">
-                              <img className="w-24 h-24 rounded-full" src={`${process.env.REACT_APP_API_URL}${message?.profileImagePath}`} alt="" />
+                              <img className="w-24 h-24 rounded-full" src={`https://destiny-apigateway.onrender.com${message?.profileImagePath}`} alt="" />
                               <p className="text-lg font-semibold text-highlight">{message?.name}</p>
                            </div>
                            <div className="px-6 flex flex-col gap-4">

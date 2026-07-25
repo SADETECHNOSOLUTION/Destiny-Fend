@@ -32,7 +32,7 @@ const Story = () => {
     const fetchUsers = async () => {
       const token = localStorage.getItem('token')
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`, {
+        const response = await axios.get(`https://destiny-apigateway.onrender.com/api/users`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -59,7 +59,7 @@ const Story = () => {
     <Icon icon="ic:twotone-arrow-back-ios" /> </button>);
 
 // function fetchImage(imageUrl, token) {
-//   const baseUrl = '${process.env.REACT_APP_API_URL}/api/users';  // Assuming the correct base is on port 8080
+//   const baseUrl = 'https://destiny-apigateway.onrender.com/api/users';  // Assuming the correct base is on port 8080
 //   const fullImageUrl = `${baseUrl}${imageUrl}`; 
 //   fetch(fullImageUrl, {
 //     method: 'GET',
@@ -82,7 +82,7 @@ const Story = () => {
 const FetchStories =useCallback( async ()=>{
   const token = localStorage.getItem('token')
   try{
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/statuses/user/status`,{
+    const response = await fetch(`https://destiny-apigateway.onrender.com/statuses/user/status`,{
       method:'GET',
       headers:{
         'Authorization':`Bearer ${token}`
@@ -150,8 +150,8 @@ const addStory = ()=>{
               const timeDifference = calculateTimeDifference();
       return(
                 <div onClick={() =>{ handleClick(story);openStory()}} className='relative bg- w-auto h-72'>
-              {story.type === 'IMAGE' ?  <img src={`${process.env.REACT_APP_API_URL}${story.content}`} alt={`${process.env.REACT_APP_API_URL}${story.content}`} className='w-full opacity-90 md:h-72' /> :      <ReactPlayer
-        url={`${process.env.REACT_APP_API_URL}${story.content}`}  // Replace with your video URL
+              {story.type === 'IMAGE' ?  <img src={`https://destiny-apigateway.onrender.com${story.content}`} alt={`https://destiny-apigateway.onrender.com${story.content}`} className='w-full opacity-90 md:h-72' /> :      <ReactPlayer
+        url={`https://destiny-apigateway.onrender.com${story.content}`}  // Replace with your video URL
         playing={true}  // Autoplay the video
         controls={false} // Hide controls if desired
         width='100%'

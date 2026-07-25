@@ -143,7 +143,7 @@ const Createpost = () => {
     }
 const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/posts`, {
         method: 'POST',
         body: formDataObj,
           headers: {
@@ -174,7 +174,7 @@ const token = localStorage.getItem('token')
   const fetchUserDetails = useCallback( async () => {
     const token = localStorage.getItem('token')
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
+      const response = await axios.get(`https://destiny-apigateway.onrender.com/api/users/${userId}`, {
         method: 'GET',
         headers: {
         'Authorization':`Bearer ${token}`
@@ -196,7 +196,7 @@ const token = localStorage.getItem('token')
   const fetchPermission = useCallback(async ()=>{
     const token = localStorage.getItem('token')
     try{
-         const response = await fetch(` ${process.env.REACT_APP_API_URL}/permissions/get-status/${userId}`,{
+         const response = await fetch(` https://destiny-apigateway.onrender.com/permissions/get-status/${userId}`,{
          method:'GET',
          headers:{
             'Authorization':`Bearer ${token}`,
@@ -232,7 +232,7 @@ const handlePermission =async ()=>{
       status:true
   }
   try{
-       const response = await fetch(`${process.env.REACT_APP_API_URL}/permissions/grant`,{
+       const response = await fetch(`https://destiny-apigateway.onrender.com/permissions/grant`,{
        method:'POST',
        body: JSON.stringify(payload),
        headers:{
@@ -262,7 +262,7 @@ const handlePermission =async ()=>{
       <p className='font-semibold text-center'>Create post</p>
 
       <div className='w-full flex'>
-      {/* <img className='w-9 h-9 rounded-full' src={`${process.env.REACT_APP_API_URL}${user?.profileImagePath}`} alt='' /> */}
+      {/* <img className='w-9 h-9 rounded-full' src={`https://destiny-apigateway.onrender.com${user?.profileImagePath}`} alt='' /> */}
       {/* <input className='w-full border border-gray-400 rounded-md h-16'
         value=''
         onClick={handleOpen}

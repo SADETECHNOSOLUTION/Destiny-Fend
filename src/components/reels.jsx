@@ -41,7 +41,7 @@ const Reels=()=>{
         formData.append('privacy', 'PUBLIC');
         formData.append('userId', userId);
         try{
-             const response = await fetch(`${process.env.REACT_APP_API_URL}/reels/addReel`,{
+             const response = await fetch(`https://destiny-apigateway.onrender.com/reels/addReel`,{
              method:'POST',
              body:formData,
              headers:{
@@ -66,7 +66,7 @@ const Reels=()=>{
     const fetchReels = async () => {
         const token = localStorage.getItem('token'); // Fixed typo
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/reels/getAll/reel`, {
+          const response = await fetch(`https://destiny-apigateway.onrender.com/reels/getAll/reel`, {
             method: 'GET',
             headers: {
               'Authorization': `Bearer ${token}` // Added space after "bearer"
@@ -91,7 +91,7 @@ const Reels=()=>{
       // const fetchUsers = async () => {
       //   const token = localStorage.getItem('token')
       //   try {
-      //     const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/users/descending`, {
+      //     const response = await axios.get(`https://destiny-apigateway.onrender.com/api/auth/users/descending`, {
       //       method: 'GET',
       //       headers: {
       //         'Authorization': `Bearer ${token}`,
@@ -162,7 +162,7 @@ return(
                 <NavLink key={reel.id} to={`/reels/${reel.id}/reel`}><div  className="relative contain-r w-44 rounded-md group inline-block mt-8 cursor-pointer h-[24rem] overflow-hidden">
                         <div key={reel.id} style={{backgroundImage:`url(${reel.story})`}} className=" group-hover:scale-105 transition-transform duration-300 inline-block cursor-pointer rounded-lg  w-56 h-[22rem]">
                         <ReactPlayer 
-        url={`${process.env.REACT_APP_API_URL}${reel.content}`}  // Replace with your video URL
+        url={`https://destiny-apigateway.onrender.com${reel.content}`}  // Replace with your video URL
         controls={false} // Hide controls if desired
         width='300%'
         height='100%'
@@ -170,7 +170,7 @@ return(
                
       <div className="absolute left-8 top-4">
         <div className="flex items-center text-white font-semibold gap-2">
-        <img className="w-6 h-6 rounded-full" src={`${process.env.REACT_APP_API_URL}${reel.profileImagePath}`} alt='' />
+        <img className="w-6 h-6 rounded-full" src={`https://destiny-apigateway.onrender.com${reel.profileImagePath}`} alt='' />
           <p key={reel.id} className='text-xs'><span>{reel.name}</span></p>
     </div>
 

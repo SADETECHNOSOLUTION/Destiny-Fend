@@ -42,7 +42,7 @@ const StoryPage = () => {
     const fetchUsers = async () => {
       const token = localStorage.getItem('token')
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/api/users`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -78,7 +78,7 @@ const StoryPage = () => {
   const handleStoryLike = async (statusId) => {
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/toggle-status?statusId=${statusId}&userId=${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/toggle-status?statusId=${statusId}&userId=${userId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ const StoryPage = () => {
         }));
         setAnimationPostId(statusId);
         // Re-fetch like count or update locally
-        const countResponse = await fetch(`${process.env.REACT_APP_API_URL}/likes/status/${statusId}/count`,{
+        const countResponse = await fetch(`https://destiny-apigateway.onrender.com/likes/status/${statusId}/count`,{
           headers:{
             'Authorization':`Bearer ${token}`
           }
@@ -127,7 +127,7 @@ const StoryPage = () => {
     };
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/comment-status?statusId=${statusId}&userId=${userId}&textContent=${statusReply}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/comments/comment-status?statusId=${statusId}&userId=${userId}&textContent=${statusReply}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ const StoryPage = () => {
   const fetchAggregateData = useCallback(async (statusId) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/aggregate-media/status/${statusId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/aggregate-media/status/${statusId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -180,7 +180,7 @@ const StoryPage = () => {
   const fetchStory = useCallback( async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/statuses/user/status`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/statuses/user/status`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -213,7 +213,7 @@ const StoryPage = () => {
   const deleteStory = async(storyId)=>{
     const token = localStorage.getItem('token')
     try{
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/statuses/delete/${userId}/${deleteid}`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/statuses/delete/${userId}/${deleteid}`,{
         method:'DELETE',
         headers:{
         'Authorization':`Bearer ${token}`
@@ -295,9 +295,9 @@ const StoryPage = () => {
         return (
           <div key={item.id} className="relative flex border border-0 h-screen">
             {item.type === 'IMAGE' ? (
-              <img src={`${process.env.REACT_APP_API_URL}${item.content}`} className=" opacity-90  h-[59rem]" alt={`${process.env.REACT_APP_API_URL}${item.content}`} />
+              <img src={`https://destiny-apigateway.onrender.com${item.content}`} className=" opacity-90  h-[59rem]" alt={`https://destiny-apigateway.onrender.com${item.content}`} />
             ) : (
-              <ReactPlayer url={`${process.env.REACT_APP_API_URL}${item.content}`} playing={true} controls={false} width="100%" height="100%" loop={true} />
+              <ReactPlayer url={`https://destiny-apigateway.onrender.com${item.content}`} playing={true} controls={false} width="100%" height="100%" loop={true} />
             )}
             
     { parseInt(userId) === item.userId &&        <div className="absolute bottom-4 left-4 flex items-center gap-4">
@@ -320,7 +320,7 @@ const StoryPage = () => {
               </div>
             )}
 {users?.map(user=>user.id === item.userId ? 
-                <div className='top-4 flex items-center gap-2 p-2 absolute'><img className='w-11 h-11 rounded-full border-2 border-cta' src={`${process.env.REACT_APP_API_URL}${item.profileImagePath}`} alt=''/><div className='flex flex-col'><span className='text-white font-semibold  text-sm'>{user.name}</span><span className='text-white text-sm font-semibold'>{timeDifference}</span></div></div>
+                <div className='top-4 flex items-center gap-2 p-2 absolute'><img className='w-11 h-11 rounded-full border-2 border-cta' src={`https://destiny-apigateway.onrender.com${item.profileImagePath}`} alt=''/><div className='flex flex-col'><span className='text-white font-semibold  text-sm'>{user.name}</span><span className='text-white text-sm font-semibold'>{timeDifference}</span></div></div>
                 :null
     )}
             {parseInt(userId) !== item.userId ? (

@@ -15,7 +15,7 @@ const GeneralSetting = ()=>{
         const fetchSettings = useCallback(async ()=>{
           const token = localStorage.getItem('token')
           try{
-            const response = await fetch(` ${process.env.REACT_APP_API_URL}/api/users/general-settings/${userId}`,{
+            const response = await fetch(` https://destiny-apigateway.onrender.com/api/users/general-settings/${userId}`,{
                method:'GET',
                headers:{
                   'Authorization':`Bearer ${token}`,

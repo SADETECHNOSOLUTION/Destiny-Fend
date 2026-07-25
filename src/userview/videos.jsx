@@ -63,7 +63,7 @@ const VideosUser = () => {
               console.error('No token found in localStorage');
               return;
                       }
-                      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/user/${userID}/videos`, {
+                      const response = await fetch(`https://destiny-apigateway.onrender.com/posts/user/${userID}/videos`, {
               method: 'GET',
             headers: {
           'Authorization': `Bearer ${token}`,

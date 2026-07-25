@@ -29,7 +29,7 @@ const Profileheader = () => {
         return;
       }
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -209,11 +209,11 @@ style={{
     {personal.profile.map((profile)=>(
     <div className='w-full flex items-center justify-center' key={profile.id}>
     <div className='flex w-5/6 flex items-center justify-center'>
-      <div style={{backgroundImage:`url('${process.env.REACT_APP_API_URL}/api/users/${user.profileImagePath}')`}} alt={user.profileImagePath} className='flex flex-col relative w-full h-96 mt-4 bg-cover bg-center bg-no-repeat gap-4 justify-end'>
+      <div style={{backgroundImage:`url('https://destiny-apigateway.onrender.com/api/users/${user.profileImagePath}')`}} alt={user.profileImagePath} className='flex flex-col relative w-full h-96 mt-4 bg-cover bg-center bg-no-repeat gap-4 justify-end'>
       <div className='absolute right-0 top-0 p-2'><div onClick={openCoverForm} className=' flex gap-2 items-center rounded-md cursor-pointer px-2 py-1 bg-white bg-opacity-40'><Icon icon="mdi:camera" width="1.2em" height="1.2em"  style={{color: ''}} /><span className='font-semibold'>Change cover photo</span> </div></div>
  <div className='flex px-11 items-center'>
            <div>
-            <img  className='w-36 border-4 border-white h-36 rounded-full' alt='' src={`${process.env.REACT_APP_API_URL}/api/users/uploads/e5221dac-d983-465c-abc1-6f1bfbe92e57_dp.jpg`} /></div> 
+            <img  className='w-36 border-4 border-white h-36 rounded-full' alt='' src={`https://destiny-apigateway.onrender.com/api/users/uploads/e5221dac-d983-465c-abc1-6f1bfbe92e57_dp.jpg`} /></div> 
             <div onClick={openImageForm} className='absolute justify-end mt-20 ml-28 flex text-cta hover:bg-cta hover:text-white border border-cta cursor-pointer items-center justify-center py-1.5 w-min px-1.5 rounded-full bg-white'><Icon icon="mdi:camera" width="1.2em" height="1.2em"  style={{color: ''}} /></div>
             </div>
         <div className='flex justify-between relative md:px-11 sm:px-6 items-center md:w-full sm:w-auto h-20 bg-white'>

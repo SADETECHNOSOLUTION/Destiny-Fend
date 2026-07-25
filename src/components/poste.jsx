@@ -125,7 +125,7 @@ const renderPrivacyIcon = () => {
     return replies.slice().reverse().map(reply => (
       <div key={reply.id} className='flex border py-2 px-4 rounded-3xl flex-col shadow-md w-full gap-2'>
         <div className='flex gap-1'>
-          <img className='w-9 h-9 rounded-full' src={`${process.env.REACT_APP_API_URL}${reply.profileImagePath}`} alt={reply.profilePic} />
+          <img className='w-9 h-9 rounded-full' src={`https://destiny-apigateway.onrender.com${reply.profileImagePath}`} alt={reply.profilePic} />
           <span className='text-sm font-semibold'>{reply?.name}</span>
         </div>
         <span>{reply.textContent}</span>
@@ -180,7 +180,7 @@ const renderPrivacyIcon = () => {
   // const fetchUserList = async () => {
   //   try {
   //     const token = localStorage.getItem('token');
-  //     const response = await fetch('${process.env.REACT_APP_API_URL}/api/auth/users/descending', {
+  //     const response = await fetch('https://destiny-apigateway.onrender.com/api/auth/users/descending', {
   //       method: 'GET',
   //       headers: {
   //         'Authorization': `Bearer ${token}`,
@@ -218,7 +218,7 @@ const renderPrivacyIcon = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -281,7 +281,7 @@ const renderPrivacyIcon = () => {
         }
 
         setLoading(true); // Start loading
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/aggregate-media/posts?page=${page}&size=5`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/aggregate-media/posts?page=${page}&size=5`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -381,7 +381,7 @@ const renderPrivacyIcon = () => {
         return;
       }
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/aggregate-media/all-posts?page=0&size=5`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/aggregate-media/all-posts?page=0&size=5`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -498,7 +498,7 @@ const renderPrivacyIcon = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/like/${postId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/like/${postId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -529,7 +529,7 @@ const renderPrivacyIcon = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/comments/${commentId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/comments/${commentId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -564,7 +564,7 @@ const renderPrivacyIcon = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/like/${postId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/like/${postId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -591,7 +591,7 @@ const renderPrivacyIcon = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${commentId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${commentId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -614,7 +614,7 @@ const renderPrivacyIcon = () => {
     e.preventDefault();
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/${deleteId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/posts/${deleteId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -639,7 +639,7 @@ const renderPrivacyIcon = () => {
     // e.preventDefault();
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/${deletecommentId}?userId=${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/comments/${deletecommentId}?userId=${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -676,7 +676,7 @@ const fetchComments = useCallback (async (postId) => {
       throw new Error('No token found in localStorage');
     }
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/post/${postId}`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/comments/post/${postId}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -713,7 +713,7 @@ const fetchComments = useCallback (async (postId) => {
     formdata.append('request', JSON.stringify(jsonData));
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/comments`, {
         method: 'POST',
         body:formdata,
         headers:{
@@ -763,7 +763,7 @@ const fetchComments = useCallback (async (postId) => {
   // const fetchUsers = async () => {
   //   const token = localStorage.getItem('token')
   //   try {
-  //     const response = await axios.get('${process.env.REACT_APP_API_URL}/api/auth/users/descending',{
+  //     const response = await axios.get('https://destiny-apigateway.onrender.com/api/auth/users/descending',{
   //       headers:{
   //         'Authorization':`Bearer ${token}`
   //       }
@@ -784,7 +784,7 @@ const fetchComments = useCallback (async (postId) => {
   const handleLikes = async (postId) => {
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/toggle?postId=${postId}&userId=${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/toggle?postId=${postId}&userId=${userId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -800,7 +800,7 @@ const fetchComments = useCallback (async (postId) => {
       fetchUserData()
         setAnimationPostId(postId);
         // Re-fetch like count or update locally
-        // const countResponse = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${postId}/count`,{
+        // const countResponse = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${postId}/count`,{
         //   headers:{
         //     'Authorization':`Bearer ${token}`
         //   }
@@ -822,7 +822,7 @@ const fetchComments = useCallback (async (postId) => {
   const likesCount = async (postId) => {
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${postId}/count`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${postId}/count`,{
         headers:{
           'Authorization':`Bearer ${token}`
         }
@@ -842,7 +842,7 @@ const fetchComments = useCallback (async (postId) => {
   const likesCommentCount = async (commentId) => {
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${commentId}/count`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${commentId}/count`,{
         headers:{
           'Authorization':`Bearer ${token}`
         }
@@ -928,7 +928,7 @@ const fetchComments = useCallback (async (postId) => {
        <div className={`w-5/3 flex flex-col bg-white gap-2 rounded-md shadow-lg px-4 py-4 relative`} key={post?.postResponseDTO.postId}>
           <div className="flex justify-between items-center">
             <div className="flex gap-2 items-center">
-            <NavLink to={`/user/${post?.postResponseDTO.userId}/profile`}><img className="rounded-full w-9 h-9" src={`${process.env.REACT_APP_API_URL}${post?.postResponseDTO.profileImagePath}`} alt="Profile" /></NavLink>
+            <NavLink to={`/user/${post?.postResponseDTO.userId}/profile`}><img className="rounded-full w-9 h-9" src={`https://destiny-apigateway.onrender.com${post?.postResponseDTO.profileImagePath}`} alt="Profile" /></NavLink>
               <div className="flex flex-col">
                 <span className="font-semibold">
                 <NavLink to={`/user/${post?.postResponseDTO.userId}`}><span key={user.id} className="font-semibold text-sm">{post?.postResponseDTO.name}</span></NavLink>
@@ -943,10 +943,10 @@ const fetchComments = useCallback (async (postId) => {
           <NavLink to={`/post/${userId}/${post?.postResponseDTO?.postId}/posts`}>
 
           {post?.postResponseDTO.postType === 'IMAGE' ? (
-            <img className='w-full h-[35rem]' src={`${process.env.REACT_APP_API_URL}${post?.postResponseDTO.imageUrl}`} alt='' />
+            <img className='w-full h-[35rem]' src={`https://destiny-apigateway.onrender.com${post?.postResponseDTO.imageUrl}`} alt='' />
           ) : post?.postResponseDTO.postType === 'VIDEO' ? (
             <video className='w-full bg-black h-[35rem]' controls>
-              <source src={`${process.env.REACT_APP_API_URL}${post?.postResponseDTO.videoUrl}`} type="video/mp4" />
+              <source src={`https://destiny-apigateway.onrender.com${post?.postResponseDTO.videoUrl}`} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           ) : null}
@@ -994,7 +994,7 @@ style={{
                 .map((client) => (
                   <div className='flex items-center justify-between'>
                   <span className='flex items-center gap-4 mb-4' key={client.id}>
-                    <div className='relative p-1'><img className='w-9 h-9 rounded-full' src={ `${process.env.REACT_APP_API_URL}${client.profileImagePath}` } alt={client.profileImagePath}  />      <Icon   className='text-red absolute bottom-0' 
+                    <div className='relative p-1'><img className='w-9 h-9 rounded-full' src={ `https://destiny-apigateway.onrender.com${client.profileImagePath}` } alt={client.profileImagePath}  />      <Icon   className='text-red absolute bottom-0' 
         icon="material-symbols-light:favorite"
         width='1em'
         height='1em'/></div><span>{client.name} </span>
@@ -1036,7 +1036,7 @@ style={{
       <div className="flex p-4 gap-2 items-center">
         <img 
           className="rounded-full w-9 h-9" 
-          src={`${process.env.REACT_APP_API_URL}${sharePostId?.postResponseDTO?.profileImagePath}`} 
+          src={`https://destiny-apigateway.onrender.com${sharePostId?.postResponseDTO?.profileImagePath}`} 
           alt="Profile" 
         />
         <div className="flex flex-col">
@@ -1056,7 +1056,7 @@ style={{
     {post?.postResponseDTO?.postType === 'IMAGE' && (
       <img 
         className='w-full h-[30rem]' 
-        src={`${process.env.REACT_APP_API_URL}${sharePostId?.postResponseDTO?.imageUrl}`} 
+        src={`https://destiny-apigateway.onrender.com${sharePostId?.postResponseDTO?.imageUrl}`} 
         alt='' 
       />
     )}
@@ -1064,7 +1064,7 @@ style={{
     {sharePostId?.postResponseDTO?.postType === 'VIDEO' && (
       <video className='w-full bg-black h-[30rem]' controls>
         <source 
-          src={`${process.env.REACT_APP_API_URL}${sharePostId?.postResponseDTO?.videoUrl}`} 
+          src={`https://destiny-apigateway.onrender.com${sharePostId?.postResponseDTO?.videoUrl}`} 
           type="video/mp4" 
         />
         Your browser does not support the video tag.
@@ -1098,7 +1098,7 @@ style={{
 {post.postResponseDTO.privacySetting === 'PUBLIC'&&    <Icon onClick={()=>openShare(post)} className='w-6 h-6' icon="ph:share-fat" /> }  </div>
 
           {comment === post?.postResponseDTO.postId && (   <div className="flex items-center gap-2"><label className="cursor-pointer"><Icon className="w-6 h-5 text-gray-500" icon="mdi:camera-outline" /><input onChange={(e)=>{handleImageChange(e)}}  className="absolute opacity-0" type="file" /></label><InputEmoji onChange={(text) => setPostComment(text)} placeholder="Add a comment" /><Icon onClick={handleComment} className='text-cta cursor-pointer' icon="majesticons:send" width="1.5em" height="1.6em" strokeWidth='2' /></div>)}
-{selectedphotocomment && <img className='w-28 h-28' src={selectedphotocomment?.name.name} alt={`${process.env.REACT_APP_API_URL}${selectedphotocomment.name}`} />}
+{selectedphotocomment && <img className='w-28 h-28' src={selectedphotocomment?.name.name} alt={`https://destiny-apigateway.onrender.com${selectedphotocomment.name}`} />}
           {comment === post?.postResponseDTO.postId && post.commentResponses?(
   post.commentResponses.map((comment) => {
     // const commentUser = users.find(user => user.id === comment.userId);
@@ -1129,11 +1129,11 @@ style={{
 <div className='flex justify-between'>
 <div className='flex justify-between w-full items-center'>
   <div className='flex gap-2 items-center' >
-<img className='rounded-full h-7 w-7' src={`${process.env.REACT_APP_API_URL}${comment?.profileImagePath}`} alt={post?.profilepic} />
+<img className='rounded-full h-7 w-7' src={`https://destiny-apigateway.onrender.com${comment?.profileImagePath}`} alt={post?.profilepic} />
 <div className='flex flex-col'>
 <p className='font-semibold text-xs'>{comment?.name}</p>
 <span className='text-xs'>{commenttime}</span>
-{comment.imagePath && <img alt='' className='w-52 h-44' src={`${process.env.REACT_APP_API_URL}${comment.imagePath}`} />}
+{comment.imagePath && <img alt='' className='w-52 h-44' src={`https://destiny-apigateway.onrender.com${comment.imagePath}`} />}
 </div>
 </div>
 <div className="flex flex-col items-center relative"> {/* Ensure dropdown menu is positioned correctly */}

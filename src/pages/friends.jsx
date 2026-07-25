@@ -66,7 +66,7 @@ const isCurrentUser = parseInt(userID) === userId;
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${isCurrentUser ? userId:userID}/friends`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/${isCurrentUser ? userId:userID}/friends`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

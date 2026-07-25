@@ -110,7 +110,7 @@ const handleImageSelect = (id) => {
         return;
       }
   
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/aggregate-media/reel/${userID}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/aggregate-media/reel/${userID}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -198,7 +198,7 @@ const handleImageSelect = (id) => {
       return(
         <div key={reply.id} className='flex border py-2 px-4 rounded-3xl flex-col shadow-md w-full gap-2'>
           <div className='flex gap-1'>
-            <img className='w-7 h-7 rounded-full' src={`${process.env.REACT_APP_API_URL}${reply.profileImagePath}`} alt={reply.profilePic} />
+            <img className='w-7 h-7 rounded-full' src={`https://destiny-apigateway.onrender.com${reply.profileImagePath}`} alt={reply.profilePic} />
             <div className='flex flex-col'>
             <span className='text-sm font-semibold'>{reply?.name}</span>
             <span className='text-xs'>{commenttime}</span>
@@ -306,7 +306,7 @@ const handleImageSelect = (id) => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${userId}/friends`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/${userId}/friends`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -332,7 +332,7 @@ const handleImageSelect = (id) => {
     // e.preventDefault();
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/${deletecommentId}?userId=${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/comments/${deletecommentId}?userId=${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -379,7 +379,7 @@ const handleImageSelect = (id) => {
     formdata.append('request', JSON.stringify(jsonData));
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/comment-reels`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/comments/comment-reels`, {
         method: 'POST',
         body:formdata,
         headers:{
@@ -420,7 +420,7 @@ const handleImageSelect = (id) => {
     
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/web-socket/chat`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/web-socket/chat`, {
         method: 'POST',
         body:JSON.stringify(jsonData),
         headers:{
@@ -458,7 +458,7 @@ const handleImageSelect = (id) => {
         throw new Error('No token found in localStorage');
       }
   
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/comment-reels/${postId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/comments/comment-reels/${postId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -495,7 +495,7 @@ const handleOption = ()=>{
 const handleCommentLikes = async (postId) => {
   const token = localStorage.getItem('token')
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/toggle-comment?commentId=${postId}&userId=${userId}&commentLikeType=REELS_COMMENT_LIKE`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/likes/toggle-comment?commentId=${postId}&userId=${userId}&commentLikeType=REELS_COMMENT_LIKE`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -526,7 +526,7 @@ const fetchLikes = useCallback(async (postId) => {
       console.error('No token found in localStorage');
       return;
     }
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/reels/${postId}`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/likes/reels/${postId}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -555,7 +555,7 @@ const fetchLikes = useCallback(async (postId) => {
 const likesCount =useCallback( async (postId) => {
   const token = localStorage.getItem('token')
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/reels/${userID}/count`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/likes/reels/${userID}/count`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -586,7 +586,7 @@ const fetchUserData =  useCallback(async () => {
     // Convert userID to an integer and validate
     // Make the API request with the integer userID
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/user/${userIdValue}`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/posts/user/${userIdValue}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -623,7 +623,7 @@ useEffect(() => {
 const handleLikes = async (reelsId) => {
   const token = localStorage.getItem('token')
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/toggle-reels?reelsId=${userID}&userId=${userId}`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/likes/toggle-reels?reelsId=${userID}&userId=${userId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -635,7 +635,7 @@ const handleLikes = async (reelsId) => {
      fetchReels()
       setAnimationPostId(reelsId);
       // Re-fetch like count or update locally
-      // const countResponse = await fetch(`${process.env.REACT_APP_API_URL}/likes/reels/${userID}/count`,{
+      // const countResponse = await fetch(`https://destiny-apigateway.onrender.com/likes/reels/${userID}/count`,{
       //   headers:{
       //     'Authorization':`Bearer ${token}`
       //   }
@@ -666,7 +666,7 @@ const fetchLikedBy = async (postId) => {
       console.error('No token found in localStorage');
       return;
     }
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/reels/${postId}`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/likes/reels/${postId}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -698,7 +698,7 @@ const handleLike = async (postId) => {
   // const fetchUsers = useCallback( async () => {
   //   const token = localStorage.getItem('token')
   //   try {
-  //     const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/users/descending`,{
+  //     const response = await axios.get(`https://destiny-apigateway.onrender.com/api/auth/users/descending`,{
   //       headers:{
   //         'Authorization':`Bearer ${token}`
   //       }
@@ -722,7 +722,7 @@ const handleLike = async (postId) => {
   const DeleteReels = async () => {
     const token = localStorage.getItem('token'); // Fixed typo
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/reels/deleteReel/${userId}/${userID}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/reels/deleteReel/${userId}/${userID}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}` // Added space after "bearer"
@@ -744,7 +744,7 @@ const handleLike = async (postId) => {
         <div className="min-h-screen flex">
           <div className="w-1/2 bg-black min-screen">
             <ReactPlayer
-              url={`${process.env.REACT_APP_API_URL}${selectedReel?.reelResponse.content}`}
+              url={`https://destiny-apigateway.onrender.com${selectedReel?.reelResponse.content}`}
               controls={true}
               playing={true}
               loop={true}
@@ -755,7 +755,7 @@ const handleLike = async (postId) => {
           <div className="w-1/2 flex flex-col gap-2 min-screen p-2">
           <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                    <img className="border w-9 h-9 rounded-full bg-gray-400" src={`${process.env.REACT_APP_API_URL}${selectedReel?.reelResponse.profileImagePath}`} alt="" />
+                    <img className="border w-9 h-9 rounded-full bg-gray-400" src={`https://destiny-apigateway.onrender.com${selectedReel?.reelResponse.profileImagePath}`} alt="" />
                     <p className="font-semibold ">{selectedReel?.reelResponse.name}</p>
                   </div>{selectedReel?.reelResponse.userId === parseInt(userId) && <span className="flex flex-col"><Icon onClick={handleOption}  icon="iconamoon:menu-kebab-vertical-bold" />
                   </span>}</div>
@@ -780,7 +780,7 @@ const handleLike = async (postId) => {
       <Icon onClick={()=>openShare(post)} className='w-6 h-6' icon="ph:share-fat" />
     </div>
     <div className="flex items-center gap-2">{permission?.some(p => p.permission === "CAMERA" && p.status === true) ? <label className="cursor-pointer"><Icon className="w-7 h-7 text-gray-500" icon="mdi:camera-outline" /><input onChange={(e)=>{handleImageChange(e,post.postId)}}  className="absolute opacity-0" type="file" /></label> : <label className="cursor-pointer"><Icon className="w-7 h-7 text-gray-500" icon="mdi:camera-outline" /> </label> }<InputEmoji value={postComment[post.postId]} onChange={(text) => setPostComment(text)} placeholder="Add a comment" /><Icon onClick={handleComment} className='text-cta cursor-pointer' icon="majesticons:send" width="1.5em" height="1.6em" strokeWidth='2' /></div>
-{/* {selectedPhotoComments[selectedReel?.id] && <img className='w-28 h-28' src={selectedphotocomment?.name.name} alt={`${process.env.REACT_APP_API_URL}${selectedphotocomment.name}`} />} */}
+{/* {selectedPhotoComments[selectedReel?.id] && <img className='w-28 h-28' src={selectedphotocomment?.name.name} alt={`https://destiny-apigateway.onrender.com${selectedphotocomment.name}`} />} */}
 <div className='flex flex-col max-h-screen h-full w-full gap-4 overflow-y-auto'>
           {selectedReel?.commentReelsResponse?(
   selectedReel?.commentReelsResponse.map((comment) => {
@@ -815,7 +815,7 @@ const handleLike = async (postId) => {
 <div className='flex flex-col'>
 <p className='font-semibold text-sm'>{comment?.name}</p>
 <span className='text-xs'>{commenttime}</span>
-{comment.imagePath && <img className='w-52 h-44' alt="" src={`${process.env.REACT_APP_API_URL}${comment.imagePath}`} />}
+{comment.imagePath && <img className='w-52 h-44' alt="" src={`https://destiny-apigateway.onrender.com${comment.imagePath}`} />}
 </div>
 </div>
 <div className="flex flex-col items-center relative"> {/* Ensure dropdown menu is positioned correctly */}
@@ -908,7 +908,7 @@ style={{
 <div className="flex flex-col gap-1 items-center">
 <img alt="" onClick={() => handleImageSelect(friend.id)}  className={`w-11 h-11 rounded-full ${
                       selectedImageId === friend.id ? ' border-4 border-cta' : ''
-                    }`} src={`${process.env.REACT_APP_API_URL}${friend.profileImagePath}`} />
+                    }`} src={`https://destiny-apigateway.onrender.com${friend.profileImagePath}`} />
 <span className="text-sm">{friend.name}</span>
 </div>
 </div>
@@ -955,7 +955,7 @@ style={{
 <div className="flex gap-1 items-center">
 <img alt="" onClick={() => handleImageSelect(friend.id)}  className={`w-11 h-11 rounded-full ${
                       selectedImageId === friend.id ? ' border-4 border-cta' : ''
-                    }`} src={`${process.env.REACT_APP_API_URL}${friend.profileImagePath}`} />
+                    }`} src={`https://destiny-apigateway.onrender.com${friend.profileImagePath}`} />
 <span className="text-sm">{friend.name}</span>
 <button onClick={()=>{shareReel(friend.id);}} className={`bg-cta absolute right-0 w-max hover:bg-opacity-90 py-2 px-3 rounded-md text-white font-semibold`}>Send</button>
 </div>

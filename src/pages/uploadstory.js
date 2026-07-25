@@ -46,7 +46,7 @@ const StoryUpload = ()=>{
         formData.append('privacy', 'PUBLIC');
         formData.append('userId', userId);
         try{
-             const response = await fetch(`${process.env.REACT_APP_API_URL}/statuses/post`,{
+             const response = await fetch(`https://destiny-apigateway.onrender.com/statuses/post`,{
              method:'POST',
              body:formData,
              headers:{
@@ -72,7 +72,7 @@ const StoryUpload = ()=>{
     const fetchPermission = useCallback(async ()=>{
         const token = localStorage.getItem('token')
         try{
-             const response = await fetch(` ${process.env.REACT_APP_API_URL}/permissions/get-status/${userId}`,{
+             const response = await fetch(` https://destiny-apigateway.onrender.com/permissions/get-status/${userId}`,{
              method:'GET',
              headers:{
                 'Authorization':`Bearer ${token}`,
@@ -108,7 +108,7 @@ const StoryUpload = ()=>{
             status:true
         }
         try{
-             const response = await fetch(`${process.env.REACT_APP_API_URL}/permissions/grant`,{
+             const response = await fetch(`https://destiny-apigateway.onrender.com/permissions/grant`,{
              method:'POST',
              body: JSON.stringify(payload),
              headers:{

@@ -71,7 +71,7 @@ const Profession = () => {
       <div key={reply.id} className='flex border py-2 px-4 rounded-3xl flex-col shadow-md w-full gap-2'>
         <div className='flex justify-between'>
           <div className='flex items-center gap-1'>
-          <img className='w-9 h-9 rounded-full' src={`${process.env.REACT_APP_API_URL}${reply.profileImagePath}`} alt={`${process.env.REACT_APP_API_URL}${reply.profileImagePath}`} />
+          <img className='w-9 h-9 rounded-full' src={`https://destiny-apigateway.onrender.com${reply.profileImagePath}`} alt={`https://destiny-apigateway.onrender.com${reply.profileImagePath}`} />
           <span>{reply.name}</span>
           </div>
           {/* {reply.replies && reply.replies.length > 0 && (
@@ -130,7 +130,7 @@ const Profession = () => {
   const fetchUserList = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/users/descending`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/users/descending`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -168,7 +168,7 @@ const Profession = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/api/users/${userId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -202,7 +202,7 @@ const Profession = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/posts`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -263,7 +263,7 @@ const Profession = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${postId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${postId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -297,7 +297,7 @@ const Profession = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${postId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${postId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -321,7 +321,7 @@ const Profession = () => {
     e.preventDefault();
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/${deleteId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/posts/${deleteId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -346,7 +346,7 @@ const Profession = () => {
     // e.preventDefault();
   
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/${deletecommentId}?userId=${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/comments/${deletecommentId}?userId=${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -393,7 +393,7 @@ const Profession = () => {
     formdata.append('request', JSON.stringify(jsonData));
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/comment-post`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/comments/comment-post`, {
         method: 'POST',
         body:formdata,
         headers:{
@@ -441,7 +441,7 @@ const Profession = () => {
         throw new Error('No token found in localStorage');
       }
   
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/post/${postId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/comments/post/${postId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -466,7 +466,7 @@ const Profession = () => {
   const fetchUsers =useCallback( async () => {
     const token = localStorage.getItem('token')
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/users/descending`, {
+      const response = await axios.get(`https://destiny-apigateway.onrender.com/api/auth/users/descending`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -491,7 +491,7 @@ const Profession = () => {
   const handleLikes = async (postId) => {
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/toggle?postId=${postId}&userId=${userId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/toggle?postId=${postId}&userId=${userId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -506,7 +506,7 @@ const Profession = () => {
         }));
         setAnimationPostId(postId);
         // Re-fetch like count or update locally
-        const countResponse = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${postId}/count`, {
+        const countResponse = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${postId}/count`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -530,7 +530,7 @@ const Profession = () => {
   const likesCount = async (postId) => {
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${postId}/count`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${postId}/count`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -606,7 +606,7 @@ const Profession = () => {
         <div className='w-5/3 flex flex-col gap-4 shadow-lg py-4 px-4 relative' key={post.postId}>
           <div className="flex justify-between items-center">
             <div className="flex gap-2 items-center">
-            <NavLink to={`/user/${post.userId}`}><img className="rounded-full w-11 h-11" src={`${process.env.REACT_APP_API_URL}${post?.profileImagePath}`} alt="Profile" /></NavLink>
+            <NavLink to={`/user/${post.userId}`}><img className="rounded-full w-11 h-11" src={`https://destiny-apigateway.onrender.com${post?.profileImagePath}`} alt="Profile" /></NavLink>
               <div className="flex flex-col">
                 <span className="font-semibold">
             <NavLink to={`/user/${post.userId}`}><span key={user.id} className="font-semibold">{post.name}</span></NavLink>
@@ -637,7 +637,7 @@ const Profession = () => {
           </div>
           <span>{post.description}</span>
           {post.postType === 'IMAGE' ? (
-          <NavLink to={`/post/${post.userId}/${post.postId}`}> <img className='w-full h-[35rem]' src={`${process.env.REACT_APP_API_URL}${post.imageUrl}`} alt='' /> </NavLink> 
+          <NavLink to={`/post/${post.userId}/${post.postId}`}> <img className='w-full h-[35rem]' src={`https://destiny-apigateway.onrender.com${post.imageUrl}`} alt='' /> </NavLink> 
           ) : post.postType === 'VIDEO' ? (
             <NavLink to={`/post/${post.userId}/${post.postId}`}> <video className='w-full bg-black h-[35rem]' controls>
               <source src={`http://0/api/users${post.videoUrl}`} type="video/mp4" />
@@ -725,7 +725,7 @@ style={{
           </div>
 
           {comment === post.postId && (   <div className="flex items-center gap-2"><label className="cursor-pointer"><Icon className="w-7 h-7 text-gray-500" icon="mdi:camera-outline" /><input onChange={(e)=>{handleImageChange(e,post.postId)}}  className="absolute opacity-0" type="file" /></label><InputEmoji onChange={(text) => setPostComment(text)} placeholder="Add a comment" /><Icon onClick={handleComment} className='text-cta cursor-pointer' icon="majesticons:send" width="1.5em" height="1.6em" strokeWidth='2' /></div>)}
-{selectedPhotoComments[post.postId] && <img className='w-28 h-28' src={selectedphotocomment?.name.name} alt={`${process.env.REACT_APP_API_URL}${selectedphotocomment.name}`} />}
+{selectedPhotoComments[post.postId] && <img className='w-28 h-28' src={selectedphotocomment?.name.name} alt={`https://destiny-apigateway.onrender.com${selectedphotocomment.name}`} />}
           {comment === post.postId && displayComments[post.postId]?(
   displayComments[post.postId].map((comment) => {
     // const commentUser = users.find(user => user.id === comment.userId);
@@ -756,12 +756,12 @@ style={{
 <div className='flex justify-between'>
 <div className='flex justify-between w-full items-center'>
   <div className='flex gap-2 items-center' >
-<img className='rounded-full h-9 w-9' src={`${process.env.REACT_APP_API_URL}${comment.profileImagePath}`} alt={post.profilepic} />
+<img className='rounded-full h-9 w-9' src={`https://destiny-apigateway.onrender.com${comment.profileImagePath}`} alt={post.profilepic} />
 
 <div className='flex flex-col'>
 <p className='font-semibold text-sm'>{comment?.name}</p>
 <span className='text-xs text-gray-500'>{commenttime}</span>
-{comment.imagePath && <img className='w-52 h-44' src={`${process.env.REACT_APP_API_URL}${comment.imagePath}`} alt={`${process.env.REACT_APP_API_URL}${comment.imagePath}`} />}
+{comment.imagePath && <img className='w-52 h-44' src={`https://destiny-apigateway.onrender.com${comment.imagePath}`} alt={`https://destiny-apigateway.onrender.com${comment.imagePath}`} />}
 </div>
 </div>
 <div className="flex flex-col items-center relative"> {/* Ensure dropdown menu is positioned correctly */}

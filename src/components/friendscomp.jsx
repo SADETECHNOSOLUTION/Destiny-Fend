@@ -46,7 +46,7 @@ const fetchfriends = useCallback( async () => {
       console.error('No token found in localStorage');
       return;
     }
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${isCurrentUser ? userId:userID}/friends`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/${isCurrentUser ? userId:userID}/friends`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -72,7 +72,7 @@ const fetchfriends = useCallback( async () => {
     const token = localStorage.getItem('token')
 
     try{
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/delete-friend/${userId}/${unfriendId}`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/delete-friend/${userId}/${unfriendId}`,{
         method:'DELETE',
         headers:{
           'Authorization':`bearer${token}`
@@ -103,7 +103,7 @@ const fetchfriends = useCallback( async () => {
            {profile?.friendListAndCount?.friends?.map((friend)=>(
             <div key={friend.id} className='flex ml-10 h-64 flex-col border w-44 border-gray-150 rounded-md pb-3 justify-center gap-2 text-center'>
             <div className='flex flex-col justify-center text-center'>
-            <img className='w-48 h-40' alt='' src={`${process.env.REACT_APP_API_URL}${friend.profileImagePath}`} />
+            <img className='w-48 h-40' alt='' src={`https://destiny-apigateway.onrender.com${friend.profileImagePath}`} />
             </div>
             <div>
             <p className='font-semibold'>{friend.name}</p>

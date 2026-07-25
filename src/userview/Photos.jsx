@@ -47,7 +47,7 @@ const PhotosUser = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${postId}`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${postId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -75,7 +75,7 @@ const PhotosUser = () => {
   const likesCount = useCallback(async (postId) => {
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/likes/post/${postId}/count`,{
+      const response = await fetch(`https://destiny-apigateway.onrender.com/likes/post/${postId}/count`,{
         headers:{
           'Authorization':`Bearer ${token}`
         }
@@ -114,7 +114,7 @@ const PhotosUser = () => {
         console.error('No token found in localStorage');
         return;
       }
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/user/${userID}/images`, {
+      const response = await fetch(`https://destiny-apigateway.onrender.com/posts/user/${userID}/images`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -265,7 +265,7 @@ const PhotosUser = () => {
           <div key={photo.postId} className='inline-block cursor-pointer relative overflow-hidden'>
   <NavLink to={`/post/${userID}/${photo.postId}`}>
   <div className='relative cursor-pointer'>
-  <img className='w-64 md:h-64 rounded-lg' src={`${process.env.REACT_APP_API_URL}${photo.imageUrl}`} alt={`${process.env.REACT_APP_API_URL}${photo.imageUrl}`} />
+  <img className='w-64 md:h-64 rounded-lg' src={`https://destiny-apigateway.onrender.com${photo.imageUrl}`} alt={`https://destiny-apigateway.onrender.com${photo.imageUrl}`} />
     <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 hover:opacity-80 rounded-lg flex items-center justify-center">
     <p className="text-white flex items-center justify-center gap-2 md:w-full i know an assassin when i see one unmaiyana miso kellam free pass kudutharrathu namma hypocrisy ah question panna label ottidrathu paaka azhaga irukka nu tha mannichu vidren avan varamaatan di yaaru pa athu crowd uh enakku therinjavangala achum yarna maati tholaingalen da ithu mattu enga meera ka ku therinjuthu rocket raja oru thirudan ah whats a crocodile doing in perungalathur ethayachum sollu ya w-40 md:text-lg font-semibold"> <Icon className='text-cta' icon="ph:heart-fill" width="1.4em" height="1.4em" />{likeCount[photo.postId] || 0} </p>
     </div>

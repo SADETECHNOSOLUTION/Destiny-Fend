@@ -32,7 +32,7 @@ const PostVideo = ({close, file}) => {
       }
       const token = localStorage.getItem('token')
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/posts`, {
           method: 'POST',
           body: formDataObj,
           headers:{

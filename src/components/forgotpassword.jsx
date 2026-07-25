@@ -67,7 +67,7 @@ const handleSendOtp = async (e) => {
   const payload = { email };
   try {
     console.log('Sending payload:', JSON.stringify(payload));
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/forgot-password`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/forgot-password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ const handleVerifyOtp = async (e) => {
     };
   try {
     console.log('Sending data:', JSON.stringify(payload));
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/reset-password`, {
+    const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/reset-password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

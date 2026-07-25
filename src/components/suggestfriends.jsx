@@ -10,7 +10,7 @@ const Suggestfriends = () => {
   const fetchUsers = async () => {
     const token = localStorage.getItem('token')
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`, {
+      const response = await axios.get(`https://destiny-apigateway.onrender.com/api/users`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -59,7 +59,7 @@ const Forgotpassword2 = () => {
       try {
   
         console.log('Sending data:', JSON.stringify(payload));
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/verifyOtp`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/api/auth/verifyOtp`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -2,13 +2,13 @@ import React from "react";
 
 export const fetchUserdata = async (token) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
+      const response = await fetch('http://localhost:8082/api/users', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
-
+  
       if (response.ok) {
         const data = await response.json();
 

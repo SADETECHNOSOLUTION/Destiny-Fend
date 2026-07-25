@@ -189,7 +189,7 @@ const ProfessionType = ()=>{
             
             {/* Subtle indicator dot for active state */}
             {isActive && (
-              <div className="absolute top-2 right-2 w-2 h-2 bg-white/50 rounded-full animate-pulse" />
+              <div className="absolute top-2 right-2 w-2 h-2 bg-white/70 rounded-full animate-pulse" />
             )}
           </div>
         );
@@ -226,7 +226,7 @@ const ProfessionType = ()=>{
             
             {/* Subtle indicator dot for active state */}
             {isActive && (
-              <div className="absolute top-2 right-2 w-2 h-2 bg-white/50 rounded-full animate-pulse" />
+              <div className="absolute top-2 right-2 w-2 h-2 bg-white/70 rounded-full animate-pulse" />
             )}
           </div>
       ))}

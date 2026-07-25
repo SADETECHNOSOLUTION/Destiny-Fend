@@ -18,7 +18,7 @@ const Followers = () => {
         return;
       }
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/follows/api/followers/${userID}`,
+        `https://destiny-apigateway.onrender.com/follows/api/followers/${userID}`,
         {
           method: "GET",
           headers: {
@@ -89,7 +89,7 @@ const Followers = () => {
               <div className="flex items-center gap-2">
                 <img
                   className="w-16 h-16 bg-gray-300 rounded-full"
-                  src={`${process.env.REACT_APP_API_URL}${follower.profileImagePath}`}
+                  src={`https://destiny-apigateway.onrender.com${follower.profileImagePath}`}
                   alt=""
                 />
                 <p className="text-lg w-24 truncate">{follower.name}</p>

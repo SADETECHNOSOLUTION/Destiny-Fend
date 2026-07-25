@@ -61,7 +61,7 @@ const PhysicalAttributes = ()=>{
         const fetchDropdown = async () => {
           try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/get-dropdown/679c71512ed40716813fb231`, {
+            const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/get-dropdown/679c71512ed40716813fb231`, {
               method: 'GET',
               headers: {
                 'Authorization': `Bearer ${token}`,
@@ -126,7 +126,7 @@ const PhysicalAttributes = ()=>{
         
     const token = localStorage.getItem('token')
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/physical-attribute`, {
+          const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/physical-attribute`, {
             method: 'POST',
             body: JSON.stringify(payload),
               headers: {
@@ -175,7 +175,7 @@ const PhysicalAttributes = ()=>{
         
     const token = localStorage.getItem('token')
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession//social-media-accounts`, {
+          const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession//social-media-accounts`, {
             method: 'POST',
             body: JSON.stringify(payload),
               headers: {
@@ -217,7 +217,7 @@ const PhysicalAttributes = ()=>{
         const token = localStorage.getItem('token');
         try {
             // Send the request with the 'multipart/form-data' content type
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/additional-information`, {
+            const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/additional-information`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -259,7 +259,7 @@ const PhysicalAttributes = ()=>{
       }
     const token = localStorage.getItem('token')
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/professional-experience`, {
+          const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/professional-experience`, {
             method: 'POST',
             body: JSON.stringify(payload),
               headers: {
@@ -992,7 +992,7 @@ const PhysicalAttributes = ()=>{
 
     const token = localStorage.getItem('token')
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/personal-info`, {
+          const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/personal-info`, {
             method: 'POST',
             body: JSON.stringify(payload),
               headers: {
@@ -1029,7 +1029,7 @@ const PhysicalAttributes = ()=>{
         
     const token = localStorage.getItem('token')
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profession/availability`, {
+          const response = await fetch(`https://destiny-apigateway.onrender.com/api/profession/availability`, {
             method: 'POST',
             body: JSON.stringify(payload),
               headers: {

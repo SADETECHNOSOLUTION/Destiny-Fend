@@ -15,7 +15,7 @@ const Friendrequest = () => {
           console.error('No token found in localStorage');
           return;
         }
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/${userId}/pending-requests`, {
+        const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/${userId}/pending-requests`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -42,7 +42,7 @@ const Friendrequest = () => {
           recipientId:acceptID
         }
         try{
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/accept?senderId=${acceptID}&recipientId=${userId}`,{
+          const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/accept?senderId=${acceptID}&recipientId=${userId}`,{
             method:'POST',
             headers:{
               'Authorization':`Bearer ${token}`
@@ -69,7 +69,7 @@ const Friendrequest = () => {
           recipientId:cancelID
         }
         try{
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/friend-requests/decline?senderId=${cancelID}&recipientId=${userId}`,{
+          const response = await fetch(`https://destiny-apigateway.onrender.com/friend-requests/decline?senderId=${cancelID}&recipientId=${userId}`,{
             method:'POST',
             headers:{
               'Authorization':`Bearer${token}`
@@ -116,9 +116,9 @@ const Friendrequest = () => {
             {request?.pendingRequest.map((friend)=>(
             <div key={friend.id} className='flex flex-col border border-gray-200 rounded-md w-[22rem] '>
 <div className="relative">
-  <img className="w-full h-28" src={`${process.env.REACT_APP_API_URL}${friend.senderBannerPath}`} alt="" />
+  <img className="w-full h-28" src={`https://destiny-apigateway.onrender.com${friend.senderBannerPath}`} alt="" />
   <div className="absolute -mt-10 ml-2 flex  items-center">
-    <img className="rounded-full w-16 h-16 border-2 border-white" alt="" src={`${process.env.REACT_APP_API_URL}${friend.senderImagePath}`} />
+    <img className="rounded-full w-16 h-16 border-2 border-white" alt="" src={`https://destiny-apigateway.onrender.com${friend.senderImagePath}`} />
   </div>
 </div>
             <div className='flex flex-col mt-5 gap-3 p-2'>
