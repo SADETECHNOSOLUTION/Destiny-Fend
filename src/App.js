@@ -73,6 +73,7 @@ import ProfileForm from './pages/profileform.js';
 import LoginWizard from './pages/wizardlogin.js';
 import LoginAdminWizard from './pages/wizardadminlogin.js';
 import AdminDashboard from './pages/dashboard.js';
+import RecruiterDashboard from './pages/RecruiterDashboard.jsx';
 
 Modal.setAppElement('#root');
 
@@ -125,6 +126,7 @@ function App() {
         <Route path='/:userID/followers/' element={<DefaultWithNavbar><DefaultWithHeaderUser><Followers /></DefaultWithHeaderUser></DefaultWithNavbar>} />
         <Route path='/:userID/following/' element={<DefaultWithNavbar><DefaultWithHeaderUser><Following /></DefaultWithHeaderUser></DefaultWithNavbar>} />
         <Route path='/editpersonal' element={<DefaultWithNavbar><Personalinfo /></DefaultWithNavbar>} />
+        <Route path='/recruiterdashboard' element={<DefaultWithNavbar><RecruiterDashboard /></DefaultWithNavbar>} />
         <Route path='/friendrequest/:userID' element={<DefaultWithNavbar><DefaultWithHeaderUser><Friendrequest /></DefaultWithHeaderUser></DefaultWithNavbar>} />
         <Route path='/editprofile' element={<DefaultWithNavbar><SetEditprofile /></DefaultWithNavbar>} />
         <Route path='/photos/:id/photos' element={<DefaultWithNavbar><Photodisplay /></DefaultWithNavbar>}/>
@@ -134,20 +136,20 @@ function App() {
         <Route path='/Privacydata' element={<DefaultWithNavbar><PrivacyandDataSetting /></DefaultWithNavbar>} />
         <Route path='/notificationsettings' element={<DefaultWithNavbar><Notificationsettings /></DefaultWithNavbar>} />
         <Route path='/messagesettings' element={<DefaultWithNavbar><MessageSettings /></DefaultWithNavbar>} />
-        <Route path='/storypage' element={<StoryPage />}/>
+        <Route path='/storypage' element={<StoryPage />}/>xx
         <Route path='/timelineview/:userID/timeline' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><Post /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>}/>
         <Route path='/professionview/:userID' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><ProfessionPost /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>}/>
         <Route path='/photosview/:userID/photos' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><PhotosUser /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>}/>
         <Route path='/profilehead' element={<ProfileheaderUser />}/>
-                <Route path='/profileWizard' element={<ProfileForm/>}/>
-                <Route path='/Dashboardview' element={<Dashboard/>}/>
+        <Route path='/profileWizard' element={<ProfileForm/>}/>
+        <Route path='/Dashboardview' element={<Dashboard/>}/>
         <Route path='/uploadstory' element={<StoryUpload />}/>
         <Route path='/addfriends' element={<Addfriends />}/>
         <Route path='/videosview/:userID/videos' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><VideosUser /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>} />
         <Route path='/profileview' element={<DefaultWithNavbar><DefaultWithHeaderUser><ProfileView /></DefaultWithHeaderUser></DefaultWithNavbar>}/>
         <Route path='/friendsview/:userID/friends' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><Friendview /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>} />
         <Route path='*' element={<ErrorPage />} />
-                <Route path='/login' element={<LoginWizard />} />
+        <Route path='/login' element={<LoginWizard />} />
         <Route path='test' element={ <Sliper />} />
         <Route path='/Reels/:userID/reel' element={<DefaultWithNavbar><DisplayReels /></DefaultWithNavbar>} />
         <Route path='/chat' element={<Chat />} />

@@ -8,7 +8,7 @@ const Weather = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch('https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=01a376e4dbd249ceae244d42328ca657&include=minutely');
+          const response = await fetch(`https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=${process.env.REACT_APP_WEATHERBIT_KEY}&include=minutely`);
           if (!response.ok) {
             throw new Error('Network response was not ok.');
           }
