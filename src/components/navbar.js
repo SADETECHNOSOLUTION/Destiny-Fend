@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import {useDispatch} from 'react-redux';
 import { addFriend } from '../slices/friendlistslice';
 
-
 const Navbar = () => {
   const [user, setUser] = useState('');
   const [showAllRequests, setShowAllRequests] = useState(false);

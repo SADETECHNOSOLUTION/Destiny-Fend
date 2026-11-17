@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@iconify-react/fluent": "gitlab:iconify-icons/react#fluent",
+    "@iconify-react/mdi": "gitlab:iconify-icons/react#mdi",
     "@iconify/react": "^5.0.2",
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",

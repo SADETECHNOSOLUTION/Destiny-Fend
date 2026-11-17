@@ -14,7 +14,7 @@ import { fetchUserProfile } from '../admindashboard/fetchuser';
 import CryptoJS from 'crypto-js';
 
 const Signin = () => {
-    const [user,setUser] = useState({ email: '', password:'',loginmail:''});
+    const [user,setUser] = useState({ email: '', password:''});
     const dispatch = useDispatch();
     const [otp, setOtp] = useState(Array(6).fill(''));
     const [signinOtp,showOtp] = useState(false);
@@ -161,7 +161,7 @@ const Signin = () => {
         
         // Construct the payload
         const payload = {
-          email: user.loginmail
+          email: user.email
         };
 
         try {
@@ -241,7 +241,6 @@ const Signin = () => {
         console.log(JSON.stringify(CryptoJS.enc.Utf8.parse(process.env.REACT_APP_AES_IV)))
         console.log(encryptData(user.password))
 
-
         try {
           // const token = process.env.REACT_APP_GITHUB_TOKEN;
           const response = await fetch('http://localhost:8080/api/auth/login', {
@@ -316,7 +315,7 @@ const Signin = () => {
       return;
     } 
     const payload = {
-        email: user.loginmail,
+        email: user.email,
         otp: otp.join('')  // Assuming OTP is an array of strings
       };
     try {
@@ -383,10 +382,10 @@ const Signin = () => {
          <div style={{fontFamily:'revert-layer'}}  className="relative max-w-[30rem] w-full h-[41.1rem]  justify-center items-center bg-gradient-to-tr from-span-start to-span-end flex flex-col ">
           <div  className='w-full text-font-mono flex flex-col items-center justify-between '>
             <div className='w-full flex flex-col gap-2 items-center justify-center'>
-            <div className='flex flex-col '>
+            <div className='flex flex-col absolute top-40 '>
               <img className='w-64 h-16' src='logo.png' alt='logo' />
             </div>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-3 text-xs bg-white px-4 rounded-md justify-center items-center w-5/6 py-6'>
+            <form onSubmit={handleSubmit} className='flex absolute bottom-0 flex-col gap-3 text-xs bg-white px-7 rounded-t-2xl justify-center items-center w-full py-6'>
            {/* <div className='flex items-center gap-2 '>
               <div className='flex wd-full items-center gap-2 py-2'>
           <div className='flex gap-1'>
@@ -411,22 +410,27 @@ const Signin = () => {
           <div className='flex flex-col w-full w-5/6 gap-3'>
           <div className='flex gap-2 flex-col'>
           <label className='text-sm'>Email <span className='text-red'>*</span></label>
-          <input id='email' name='email' onChange={handleChange} value={user.email} className=" px-2 py-2  text-sm border border-gray-400 rounded-md hover:border-2 focus:border-cta focus:outline-none " type='email' required placeholder='Enter your email' />
+          <input id='email' name='email' onChange={handleChange} value={user.email} className=" px-2 py-2 h-8 placeholder:text-xs text-xs border border-gray-300 rounded-md  focus:border-cta focus:outline-none " type='email' required placeholder='Enter your email' />
           </div>
           <div className='flex gap-2 flex-col'>
           <label className='text-sm'>Password <span className='text-red'>*</span></label>
-          <input id='password' name='password' onChange={handleChange} value={user.password} className=" px-2 py-2  text-sm border border-gray-400 hover:border-2  focus:border-cta rounded-md focus:outline-none " type='password' required placeholder='Enter your password' />
+          <input id='password' name='password' onChange={handleChange} value={user.password} className=" px-2 py-2 h-8 placeholder:text-xs  text-sm border border-gray-300  focus:border-cta rounded-md focus:outline-none " type='password' required placeholder='Enter your password' />
           </div>
-          <NavLink to='/forgotpassword'><p className=' text-xs hover:underline'>Forgot your password?</p></NavLink>
+          <div className='flex justify-end'>
+          <NavLink to='/forgotpassword'><p className=' text-xs text-cta font-semibold hover:underline'>Forgot your password</p></NavLink>
+
+          </div>
           <span className='text-red'>{error}</span>
           {/* <div className='cursor-pointer text-sm text-read' onClick={handleShowOTP}>
             Login with OTP
           </div> */}
+          
           <div className='flex flex-col text-center w-full gap-3' >
-          <button type='submit' className="px-4 py-2.5 items-center border border-gray-400 bg-gradient-to-tr text-sm from-span-start w-full to-span-end text-white-800 hover:bg-custom-hover text-white font-semibold rounded-md">Log In</button>
-          <p>I am a new member <NavLink to='/signup'><span className='text-highlight text-sm font-semibold hover:text-button cursor-pointer'>Sign Up Here</span></NavLink></p>
+          <button type='submit' className="px-4 py-1.5 items-center border border-gray-400 bg-gradient-to-tr text-sm from-span-start w-full to-span-end text-white-800 hover:bg-custom-hover text-white font-semibold rounded-md">Log In</button>
+                    <span className=''>{error}</span>
+
+          <p className='text-highlight text-xs font-semibold'>I am a new member <NavLink to='/signup'><span className='text-cta text-xs font-semibold hover:text-button cursor-pointer'>Sign Up Here</span></NavLink></p>
           </div>
-          <span className=''>{error}</span>
           </div>
 
             </form>
@@ -461,7 +465,7 @@ const Signin = () => {
       <div className='flex flex-col items-center gap-4'>
     <div className='rounded-full flex items-center justify-center p-2 bg-gray-200'><Icon className='w-6 h-6' icon="ic:outline-email" /></div>
           <input id='loginmail' name='loginmail'
-            onChange={handleChange} value={user.loginmail}
+            onChange={handleChange} value={user.email}
             className='w-72 h-10 px-2 border border-gray-400'
             placeholder='Enter you email'
           />
@@ -504,11 +508,11 @@ const Signin = () => {
     <div className='rounded-full w-10 h-10 flex items-center justify-center bg-gray-200'><Icon icon="material-symbols:mail-outline" /></div>
         <div>
           <input name='email' id='email'
-            value={user.loginmail}
+            value={user.email}
             className='w-80 h-10 px-2 border border-gray-400'
             readOnly
           />
-          <p className='text-sm text-gray-500'>OTP has been sent to {user.loginmail}</p>
+          <p className='text-sm text-gray-500'>OTP has been sent to {user.email}</p>
         </div>
         <div className='flex gap-2'>
           {otp.map((value, index) => (

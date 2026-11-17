@@ -1,4 +1,3 @@
-// videoslice.js
 
 import { createSlice } from "@reduxjs/toolkit";
 import data from '../videos.json'

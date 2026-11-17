@@ -15,7 +15,6 @@ import formReducer from '../slices/formslice'
 import authReducer from '../slices/authslice';
 import roleformReducer from '../slices/roleformslice'
 
-
 const Store = configureStore({
     reducer:{
         notification:notificationReducer,

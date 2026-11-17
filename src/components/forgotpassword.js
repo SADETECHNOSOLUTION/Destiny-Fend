@@ -11,7 +11,7 @@ const Forgotpassword = () => {
   const [user,setUser] = useState( {email: '',password:'',confirmPassword:''});
   const [otp,setOtp] = useState(Array(6).fill(''))
   const [emailotp,showemailotp] = useState(true);
-  const [verifyotp,showVerifyotp] = useState(false)
+  const [verifyotp,showVerifyotp] = useState(true)
   const [error,setError] = useState('')
   const navigate= useNavigate();
   const gotoSignin = ()=>{
@@ -103,7 +103,7 @@ const handleVerifyOtp = async (e) => {
     return;
   }
   const payload = {
-      email:user.email,
+      email:'sreemanvk@gmail.com',
       otp: otp.join(''),
       newPassword:user.password,
       confirmPassword:user.confirmPassword,

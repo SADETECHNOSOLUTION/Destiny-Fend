@@ -38,6 +38,27 @@ import CostumeDesignerPortfolio from './pages/choreographerPortfolio';
 import FilmEditorPortfolio from './pages/editor';
 import ProducerPortfolio from './pages/producerPortfolio';
 import CinematographerPortfolio from './pages/cinematographer';
+import RecruiterDashboard from './pages/recruiterdashboard';
+import CastAndCrew from './pages/castandcrew';
+import Budget from './pages/budget';
+import Positions from './pages/jobPosition';
+import TalentPartnerOnboardingMobile from './pages/talent';
+import SetUpPartnerProfileMobile from './pages/talentprofileorg';
+import SetupOrg from './pages/talentorg';
+import TalentPartnerDashboard from './pages/talenthome';
+import PostJob from './pages/postjob';
+import Findtalent from './pages/findtalent';
+import Applicants from './pages/applicants';
+import Applications from './pages/application';
+import Compare from './pages/compare';
+import CreateAudition from './pages/scheduleaudition';
+import MakeOffer from './pages/makeoffer';
+import Promote from './pages/promote';
+import Events from './pages/events';
+import CreateEvent from './pages/createevents';
+import TeamManagement from './pages/teams';
+import Verification from './pages/verification';
+import CreateProject from './pages/createproject';
 
 
 function App() {
@@ -45,10 +66,36 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path='/' element={<Default />} />
+        <Route path='/' element={<Signin />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/forgotpassword' element={<Forgotpassword />} />
         <Route path='/signup' element={<Signup />}/>
+                <Route path='/talent/dashboard' element={<DefaultWithNavbar><TalentPartnerDashboard /></DefaultWithNavbar>}/>
+                <Route path='/talent/compare' element={<DefaultWithNavbar><Compare /></DefaultWithNavbar>}/>
+                <Route path='/talent/promote' element={<DefaultWithNavbar><Promote /></DefaultWithNavbar>}/>
+                <Route path='/talent/create-event' element={<DefaultWithNavbar><CreateEvent /></DefaultWithNavbar>}/>
+                <Route path='/talent/create-project' element={<DefaultWithNavbar><CreateProject /></DefaultWithNavbar>}/>
+
+                <Route path='/talent/verification' element={<DefaultWithNavbar><Verification /></DefaultWithNavbar>}/>
+
+                <Route path='/talent/team' element={<DefaultWithNavbar><TeamManagement /></DefaultWithNavbar>}/>
+
+                <Route path='/talent/events' element={<DefaultWithNavbar><Events /></DefaultWithNavbar>}/>
+
+                <Route path='/talent/makeoffer' element={<DefaultWithNavbar><MakeOffer /></DefaultWithNavbar>}/>
+
+                <Route path='/talent/create-audition' element={<DefaultWithNavbar><CreateAudition /></DefaultWithNavbar>}/>
+
+                <Route path='/talent/applications' element={<DefaultWithNavbar><Applications /></DefaultWithNavbar>}/>
+
+                <Route path='/talent/applicants' element={<DefaultWithNavbar><Applicants /></DefaultWithNavbar>}/>
+
+                <Route path='/talent/post-a-job' element={<DefaultWithNavbar><PostJob /></DefaultWithNavbar>}/>
+                <Route path='/talent/findtalent' element={<DefaultWithNavbar><Findtalent /></DefaultWithNavbar>}/>
+        <Route path='/talent' element={<DefaultWithNavbar><TalentPartnerOnboardingMobile /></DefaultWithNavbar>}/>
+        <Route path='/talent/setup-organization' element={<DefaultWithNavbar><SetupOrg /></DefaultWithNavbar>}/>
+
+        <Route path='/talent/setup-profile' element={<DefaultWithNavbar><SetUpPartnerProfileMobile /></DefaultWithNavbar>}/>
         <Route path='/newsfeed' element={<DefaultWithNavbar><Home /></DefaultWithNavbar>}/>
         <Route path='/menu' element={<Menu />} />
         <Route path='/user/:userID' element={<DefaultWithNavbar><DefaultHeader><ProfileView/></DefaultHeader></DefaultWithNavbar>} />
@@ -73,6 +120,12 @@ function App() {
         <Route path='/profession/form' element={<FormDisplay />} />
         <Route path='/profession/script' element={<Scriptwriter />} />
         <Route path='/profession/music' element={<MusicDirectorPortfolio />} />
+                <Route path='/recruiterdashboard' element={<RecruiterDashboard />} />
+                <Route path='/Content/Budget' element={<Budget />} />
+                <Route path='/JobPosition' element={<Positions />} />
+
+        <Route path='/Content/Castandcrew' element={<CastAndCrew />} />
+
         <Route path='/profession/director' element={<DirectorPortfolio />} />
         <Route path='/profession/costume' element={<CostumeDesignerPortfolio />} />
                 <Route path='/profession/producer' element={<ProducerPortfolio />} />

@@ -232,76 +232,38 @@ const Signup = () => {
 <>
   <div style={{fontFamily:'revert-layer'}} className="relative max-w-[30rem] w-full h-[41.4rem] bg-gradient-to-tr items-center justify-center from-span-start to-span-end flex flex-col">
     <ToastContainer />
-    <div className="w-full flex flex-col   items-center justify-between ">
-      <div className="flex flex-col w-full justify-center  text-center items-center md:items-center">
-      {/* <div className="text-center text-white text-lg items-center">
-          <p className=" font-mono font-bold mb-1 ">Welcome To Destiny </p>
-
-        </div> */}
-        <div>
+        <div className='absolute top-20'>
         <img className="w-72 h-38" src="logo.png" alt="logo" />
         </div>
 
-      </div>
-<div className='flex items-center justify-center w-full'>
-      <form onSubmit={handleSubmit} className="flex flex-col w-5/6 text-xs bg-white rounded-md justify-center items-center px-4 py-4">
-        {/* <div className="flex w-full mt-2 md:w-3/6 justify-center relative text-center gap-3 mb-4">
-        <div className='flex items-center gap-1'>
-          <div className="flex items-center gap-1">
-            <input type="radio"  onChange={handleChange} name="option" checked={true} value="Individual" />
-            <label>Individual</label>
-          </div>
+      <form onSubmit={handleSubmit} className="flex absolute bottom-0 flex-col w-full text-xs bg-white rounded-t-2xl justify-center items-center px-2 py-6">
 
-          <div className="flex items-center gap-1">
-            <input type="radio" onChange={handleChange} name="option" value="Identifier" />
-            <label>Identifier</label>
-          </div>
-          </div>
-          <div className="flex items-center">
-            <div className="flex justify-center flex-col">
-            <div className='w-16 flex justify-end items-center'>
-                <div>
-                <p>{language ? language.name : 'English'}</p>
-                </div>
-                <div >
-                  {active ? <FaCaretUp onClick={() => { setActive(false); handleShowLanguages() }} /> : <FaCaretDown  onClick={() => { setActive(true); handleShowLanguages() }} />}
-                </div>
-              </div>
-              {languages && <Languages selectLanguage = {handleSelectLanguage} />}
-            </div>
-          </div>
-        </div> */}
-        <div className="flex flex-col items-center justify-center gap-2 w-full">
+        <div className="flex flex-col items-center justify-center mt-3 gap-6 w-full">
           <div className="flex gap-2 w-5/6 flex-col ">
-            <label className="text-sm">Username <span className='text-red'>*</span></label>
-            <input id='name' name='name' onChange={handleChanges} value={user.name} className="px-3 py-2 w-full text-sm border border-gray-400 focus:border-2 focus:border-cta rounded-md focus:outline-none" type="text" maxLength={25} required placeholder="Enter your username" />
+            <input id='name' name='name' onChange={handleChanges} value={user.name} className="px-2 placeholder:text-xs h-8 w-full text-sm border border-gray-300 focus:border-2 focus:border-cta rounded-md focus:outline-none" type="text" maxLength={25} required placeholder="Enter your username" />
           </div>
           <div className="flex gap-2 w-5/6 flex-col ">
-            <label className="text-sm"> Email <span className='text-red'>*</span></label>
-            <input id='email' name='email' onChange={handleChanges} value={user.email} className="px-3 py-2 w-full text-sm border border-gray-400 focus:border-2 focus:border-cta rounded-md focus:outline-none focus:border-gray" type="email" required placeholder="Enter your email" />
+            <input id='email' name='email' onChange={handleChanges} value={user.email} className="px-2 placeholder:text-xs h-8 w-full text-sm border border-gray-300 focus:border-2 focus:border-cta rounded-md focus:outline-none focus:border-gray" type="email" required placeholder="Enter your email" />
           </div>
           <div className="flex gap-2 w-5/6 flex-col">
-            <label className="text-sm">Phone Number <span className='text-red'>*</span></label>
             <div>
             <div className='flex items-center gap-2'>
-            <div onClick={handleShowPhoneCode} className='border cursor-pointer  border-gray-400 rounded-md px-2 py-2.5'><img className='w-6 h-4' src={country ? country.flag : 'india.jpg'} alt=''/></div>
-            <input id='phoneNumber' name='phoneNumber' onChange={handleChanges} value={user.phoneNumber} className="px-3 py-2 text-sm w-full focus:border-2 focus:border-cta border border-gray-400 appearance-none rounded-md focus:outline-none focus:border-gray" type="number" required placeholder="Enter your mobile number" />
+            <div onClick={handleShowPhoneCode} className='border cursor-pointer  border-gray-300 rounded-md px-2 py-1.5'><img className='w-6 h-4' src={country ? country.flag : 'india.jpg'} alt=''/></div>
+            <input id='phoneNumber' name='phoneNumber' onChange={handleChanges} value={user.phoneNumber} className="px-2 py-2 h-8 placeholder:text-xs text-sm w-full focus:border-2 focus:border-cta border border-gray-300 appearance-none rounded-md focus:outline-none focus:border-gray" type="number" required placeholder="Enter your mobile number" />
             </div>
             {phoneCode && <Phonecode setFlag = {handleSelectPhoneCode} />}
             </div>
           </div>
           <div className="flex gap-2 w-5/6 flex-col gap-1">
-            <label className=" text-sm">Password <span className='text-red'>*</span></label>
-            <input id='password' name='password' onChange={handleChanges} value={user.password} className="px-3 py-2 w-full text-sm border focus:border-2 focus:border-cta border-gray-400 rounded-md focus:outline-none focus:border-gray" type="password" required placeholder="Enter your password" />
+            <input id='password' name='password' onChange={handleChanges} value={user.password} className="px-2 placeholder:text-xs py-2 h-8 w-full text-sm border focus:border-2 focus:border-cta border-gray-300 rounded-md focus:outline-none focus:border-gray" type="password" required placeholder="Enter your password" />
           </div>
           <div className="flex gap-2 flex-col mb-2 w-5/6 gap-1">
-            <label className="text-sm">Confirm Password <span className='text-red'>*</span></label>
-            <input id='confirmPassword' name='confirmPassword' onChange={handleChanges} value={user.confirmPassword} className="px-3 py-2 w-full text-sm focus:border-2 focus:border-cta border border-gray-400 rounded-md focus:outline-none focus:border-blue-500" type="password" required placeholder="Confirm your password" />
+              <input id='confirmPassword' name='confirmPassword' onChange={handleChanges} value={user.confirmPassword} className="px-2 py-2 placeholder:text-xs h-8 w-full text-sm focus:border-2 focus:border-cta border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" type="password" required placeholder="Confirm your password" />
           </div>
-        <div className='flex w-5/6 text-center mt-4 flex-col'>
-        <button type='submit'  className="cursor-pointer px-4 py-2.5 border w-full border-gray-400 bg-gradient-to-tr from-span-start to-span-end text-white-800 mb-2 text-sm text-white font-semibold rounded-md">Sign Up</button>
-        <p>I am a new member <NavLink to="/"><span className="text-highlight text-sm font-semibold cursor-pointer">Log In Here</span></NavLink></p>
-        {passwordError && <span className="text-red text-sm">Passwords do not match!</span>}
+        <div className='flex w-5/6 text-center flex-col'>
+        <button type='submit'  className="cursor-pointer px-4 py-1.5 border w-full border-gray-300 bg-gradient-to-tr from-span-start to-span-end text-white-800 mb-2 text-sm text-white font-semibold rounded-md">Sign Up</button>
+                {passwordError && <span className="text-red text-sm">Passwords do not match!</span>}
+        <p className='text-highlight text-xs mt-4 font-semibold'>I am a new member <NavLink to="/"><span className="text-cta text-xs font-semibold cursor-pointer">Log In Here</span></NavLink></p>
         </div>
         </div>
         <div>
@@ -326,7 +288,7 @@ const Signup = () => {
   onRequestClose={handlecloseotp}
 >
   <div className='relative bg-white shadow-lg rounded-md' style={{ width: '100%', height: '100%' }}>
-    <div className="absolute flex justify-between items-center top-0 w-full h-12 cursor-pointer px-4 py-2 rounded-md border border-gray-400 bg-gradient-to-tr from-span-start to-span-end text-white-800 mb-2 text-white font-semibold">
+    <div className="absolute flex justify-between items-center top-0 w-full h-12 cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-gradient-to-tr from-span-start to-span-end text-white-800 mb-2 text-white font-semibold">
       <p className='text-xl'>Enter your OTP</p>
       <Icon className='w-6 h-6' onClick={handlecloseotp} icon="ic:baseline-close" />
     </div>
@@ -360,7 +322,7 @@ const Signup = () => {
         <div className='flex w-80 items-center justify-between'>
         <button className='px-4 py-2 bg-gray-100 shadow-md rounded-md'>Resend OTP</button>
         <button
-          className="cursor-pointer px-4 py-2 border border-gray-400 bg-gradient-to-tr from-span-start to-span-end text-white-800 text-white font-semibold rounded-md"
+          className="cursor-pointer px-4 py-2 border border-gray-300 bg-gradient-to-tr from-span-start to-span-end text-white-800 text-white font-semibold rounded-md"
           onClick={handleVerifyOtp}
           type='submit'
         >
@@ -375,8 +337,8 @@ const Signup = () => {
 </Modal>
 
       </form>
-      </div>
-    </div>
+    
+   
     {/* <div className="absolute bottom-0 bg-gradient-to-tr from-span-start to-span-end py-2 flex flex-col w-full sm:items-center sm:gap-2 md:flex-row md:justify-center md:gap-3.5">
   {info.map((detail, index) => (
     <React.Fragment key={index}>
