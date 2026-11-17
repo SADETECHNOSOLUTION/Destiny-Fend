@@ -74,6 +74,18 @@ import LoginWizard from './pages/wizardlogin.js';
 import LoginAdminWizard from './pages/wizardadminlogin.js';
 import AdminDashboard from './pages/dashboard.js';
 import RecruiterDashboard from './pages/RecruiterDashboard.jsx';
+import DashboardOrg from './pages/talentorg.jsx';
+import DashboardOrgdash from './pages/talentorg2.jsx';
+import TalentPartnerOnboarding from './pages/talent.jsx';
+import SetUpPartnerProfile from './pages/talentprofileorg.jsx';
+import TalentPartnerDashboard from './pages/talenthome.jsx';
+import RequestVerification from './pages/verificationm.jsx';
+import FindTalent from './pages/findtalent.jsx';
+import Applicants from './pages/applicants.jsx';
+import ApplicantDetailReview from './pages/applicantdata.jsx';
+import Compare from './pages/compare.jsx';
+import CreateAuditionSlots from './pages/auditionslot.jsx';
+import MakeOffer from './pages/makeoffer.jsx';
 
 Modal.setAppElement('#root');
 
@@ -105,9 +117,24 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path='/' element={<Signin />} />
+        <Route path='/' element={<DashboardOrg />} />
+        <Route path='/dashboardorg' element={<DefaultWithNavbar><DashboardOrg /></DefaultWithNavbar>}/>
+        <Route path='/talentorg' element={<DefaultWithNavbar><TalentPartnerOnboarding /></DefaultWithNavbar>}/>
+        <Route path='/dashboardorg2' element={<DefaultWithNavbar><DashboardOrgdash /></DefaultWithNavbar>}/>
+        <Route path='/dashboardprofileorg' element={<DefaultWithNavbar><SetUpPartnerProfile /></DefaultWithNavbar>}/>
+        <Route path='/talent/verification' element={<DefaultWithNavbar><RequestVerification /></DefaultWithNavbar>}/>
+        <Route path='/dashboardhome' element={<DefaultWithNavbar><TalentPartnerDashboard /></DefaultWithNavbar>}/>
         <Route path='/adminlogin' element={<LoginAdminWizard />} />
         <Route path='/signup' element={<Signup />} />
+                                <Route path='/talent/applicantsdata' element={<DefaultWithNavbar><ApplicantDetailReview /></DefaultWithNavbar>} />
+                                <Route path='/talent/CreateAuditionSlots' element={<DefaultWithNavbar><CreateAuditionSlots /></DefaultWithNavbar>} />
+                        <Route path='/talent/compare' element={<DefaultWithNavbar><Compare /></DefaultWithNavbar>} />
+
+                        <Route path='/talent/makeoffer' element={<DefaultWithNavbar><MakeOffer /></DefaultWithNavbar>} />
+
+                        <Route path='/talent/applicants' element={<DefaultWithNavbar><Applicants /></DefaultWithNavbar>} />
+
+                <Route path='/talent/findtalent' element={<DefaultWithNavbar><FindTalent /></DefaultWithNavbar>} />
         <Route path='/department' element={<Department />} />
         <Route path='/forgotpassword' element={<Forgotpassword />} />
         <Route path='/resetpassword' element={<Resetpassword />} />
@@ -136,7 +163,7 @@ function App() {
         <Route path='/Privacydata' element={<DefaultWithNavbar><PrivacyandDataSetting /></DefaultWithNavbar>} />
         <Route path='/notificationsettings' element={<DefaultWithNavbar><Notificationsettings /></DefaultWithNavbar>} />
         <Route path='/messagesettings' element={<DefaultWithNavbar><MessageSettings /></DefaultWithNavbar>} />
-        <Route path='/storypage' element={<StoryPage />}/>xx
+        <Route path='/storypage' element={<StoryPage />}/>
         <Route path='/timelineview/:userID/timeline' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><Post /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>}/>
         <Route path='/professionview/:userID' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><ProfessionPost /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>}/>
         <Route path='/photosview/:userID/photos' element={<DefaultWithNavbar><DefaultWithHeaderUser><DefaultShortcut><PhotosUser /></DefaultShortcut></DefaultWithHeaderUser></DefaultWithNavbar>}/>

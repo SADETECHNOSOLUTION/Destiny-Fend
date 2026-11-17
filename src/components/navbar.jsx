@@ -160,6 +160,10 @@ const fetchNotification = useCallback(async () => {
   }
 },[userId]);
 
+const openTalent = ()=>{
+  navigate('/talentorg');
+  closeDropdown();
+}
   
 // const fetchReqNotification = async () => {
 //   try {
@@ -200,13 +204,13 @@ const handleLogout = ()=>{
 
   const dropdowns = {
     submenu: [
-      { id: 1, title: 'General Settings',icon:<Icon className='w-5 h-5'  icon="carbon:settings" />, path: '/settings' },
-      { id: 2, title: 'Edit Profile',icon:<Icon className='w-5 h-5' icon="flowbite:edit-outline" />, path: '/editprofile'},
-      { id: 3, title: 'Notification',icon:<Icon className='w-5 h-5' icon="ic:outline-edit-notifications" />, path: '/notificationsettings'},
-      { id: 4, title: 'Messages',icon:<Icon className='w-5 h-4' icon="bx:message-edit" />, path: '/messagesettings' },
-      { id: 5, title: 'Privacy & data',icon:<Icon className='w-5 h-4' icon="carbon:security" />, path: '/Privacydata' },
-      { id: 6, title: 'Security',icon:<Icon className='w-5 h-4' icon="material-symbols:lock-outline" />, path: '/security', },
-      // { id: 8, title: 'Logout',icon: <Icon className="w-5 h-4" icon="fe:logout" />, path: '/security',task:handleLogout },
+      { id: 1, title: 'Account Settings',icon:<Icon className='w-5 h-5'  icon="carbon:settings" />, path: '/settings' },
+      // { id: 2, title: 'Edit Profile',icon:<Icon className='w-5 h-5' icon="flowbite:edit-outline" />, path: '/editprofile'},
+      // { id: 3, title: 'Notification Settings',icon:<Icon className='w-5 h-5' icon="ic:outline-edit-notifications" />, path: '/notificationsettings'},
+      // { id: 4, title: 'Message Settings',icon:<Icon className='w-5 h-4' icon="bx:message-edit" />, path: '/messagesettings' },
+      // { id: 5, title: 'Privacy & data',icon:<Icon className='w-5 h-4' icon="carbon:security" />, path: '/Privacydata' },
+      // { id: 6, title: 'Security',icon:<Icon className='w-5 h-4' icon="material-symbols:lock-outline" />, path: '/security', },
+      { id: 8, title: 'Logout',icon: <Icon className="w-5 h-4" icon="fe:logout" />, path: '/security',task:handleLogout },
 ],
   };
 
@@ -461,10 +465,25 @@ const handleLogout = ()=>{
       </div>
       </div>
       <div className='flex items-center gap-8'>
-      <div className='w-32'>
+      {/* <div className='w-32'>
         <p className='text-md font-semibold truncate text-white'>{activeTitle}</p>
+        </div> */}
+   
         </div>
-        <ul className='flex items-center justify-center gap-10'>
+        <div className="flex w-1/4 items-center justify-center">
+          <div className="relative w-full">
+            <input
+              type="text"
+              placeholder="Search"
+              className="w-full h-9 px-3 py-1 rounded-md border border-gray-300 focus:outline-none focus:border-green"/>
+            <button
+              type="submit"
+              className="absolute right-0 top-0 bottom-0 px-2 text-gray-400 rounded-r-md focus:outline-none">
+              <Icon icon={header?.searchIcon} width="1.1em" height="1.1em"  style={{color:'gray-300'}} />
+            </button>
+          </div>
+        </div>
+             <ul className='flex items-center justify-center gap-10'>
           {headers.map((header) => (
             <li key={header.id} className='cursor-pointer'>
               <div className="relative">
@@ -636,29 +655,24 @@ const handleLogout = ()=>{
             </li>
           ))}
         </ul>
-        </div>
-        <div className="flex w-1/4 items-center justify-center">
-          <div className="relative w-full">
-            <input
-              type="text"
-              placeholder="Search"
-              className="w-full h-9 px-3 py-1 rounded-md border border-gray-300 focus:outline-none focus:border-green"/>
-            <button
-              type="submit"
-              className="absolute right-0 top-0 bottom-0 px-2 text-gray-400 rounded-r-md focus:outline-none">
-              <Icon icon={header?.searchIcon} width="1.1em" height="1.1em"  style={{color:'gray-300'}} />
-            </button>
-          </div>
-        </div>
        {isProfessionInRoute? <button onClick={openNewsfeed} className='bg-white px-4 text-cta py-2 rounded-md'>Newsfeed</button>: <button onClick={openProfession} className='bg-white px-4 text-cta py-2 rounded-md'>Professional</button> }
         {/* <div onClick={()=>handleIconClick('settings')} data-tooltip-id="my-tooltip" data-tooltip-content="Settings" className='p-3 rounded-full cursor-pointer duration-500 ease-in-out hover:bg-transparent'>
         <Icon  icon={header?.settingsIcon} width="1.4em" height="1.4em"  style={{color: 'white'}} />
         </div> */}
 {activeSection === 'settings' && dropdowns.submenu && (
-  <div ref={dropdownRef} className="absolute duration-500 slide-in-down top-16 right-0 w-52  flex flex-col justify-center bg-white shadow-lg ">
-    <button onClick={openProfile} className='cursor-pointer  gap-1 flex items-center py-4 px-6 hover:bg-gray-100'>  <img alt='' className='h-7 w-7 rounded-full' src={`https://destiny-apigateway.onrender.com${user.profileImagePath}`} /> <span className='font-semibold '>{user.name}</span> </button>
+  <div ref={dropdownRef} className="absolute duration-500 slide-in-down top-16 right-0 w-64  flex flex-col justify-center bg-white shadow-lg ">
+   <div className='p-2'>
+   <div className='bg-green-100 cursor-pointer rounded-xl'>
+    <button onClick={openProfile} className='  gap-2 text-sm flex items-center py-4 px-3 '>  <img alt='' className='h-7 w-7 rounded-full' src={`https://destiny-apigateway.onrender.com${user.profileImagePath}`} /> <span className='font- '>{user.name || 'Name'}</span> </button>
+   </div>
+      <div className='border-b-2 cursor-pointer border-gray-200'>
+    <button onClick={openTalent} className='  gap-2 text-sm flex items-center py-4 px-3'> <div className='rounded-full flex items-center justify-center bg-cta h-7 w-7'><span className='text-white text-xs font-semibold'>SR</span></div> <span className='font- '>{user.name || 'Ripple Org'}</span> </button>
+   </div>
+   </div>
+   <span className='text-xs text-cta px-5 mb-2'>+ Add another organization</span>
+
     {dropdowns.submenu.map((item) => (
-      <NavLink to={item.path}><div key={item.id} onClick={closeDropdown} className="cursor-pointer  gap-1 flex items-center py-2 px-4 hover:bg-gray-100">
+      <NavLink to={item.path}><div key={item.id} onClick={closeDropdown} className="cursor-pointer  gap-1 flex items-center py-2 px-1 hover:bg-gray-100">
       <span className='p-2 rounded-full bg-white'>{item.icon}</span>  <span className='text-sm '>{item.title}</span>
       </div></NavLink>
     ))}
@@ -671,7 +685,11 @@ const handleLogout = ()=>{
           {header.title}
         </Tooltip>
       ))}
-        <img onClick={()=>handleIconClick('settings')} src={`${'/post.jfif'}`} data-tooltip-id="my-tooltip" data-tooltip-content="Profile" alt='' className='cursor-pointer rounded-full h-10 w-11 bg-gray-300'/>
+      
+      <div className='flex bg-white border-white py-2 px-2 items-center w-24 rounded-full gap-1.5'>
+        <img onClick={()=>handleIconClick('settings')} src={`${'/post.jfif'}`} data-tooltip-id="my-tooltip" data-tooltip-content="Profile" alt='' className='cursor-pointer border-2 border-white rounded-full h-7 w-7 bg-gray-300'/>
+     <span className='text-sm font-semibold'>Name</span>
+      </div>
 
    
   {/* {userId && <button onClick={handleLogout} className='p-2 bg-white text-cta rounded-md hover:bg-cta hover:text-white'>Logout</button>} */}

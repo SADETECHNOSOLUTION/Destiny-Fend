@@ -2604,6 +2604,19 @@
   dependencies:
     "@iconify/types" "*"
 
+"@iconify-react/basil@gitlab:iconify-icons/react#basil":
+  version "1.0.0"
+  resolved "git+ssh://git@gitlab.com/iconify-icons/react.git#ff2e9a673efc1621c79074b8a6f6dff0c42c6ba8"
+  dependencies:
+    "@iconify/css-react" "^1.0.1"
+
+"@iconify/css-react@^1.0.1":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@iconify/css-react/-/css-react-1.0.4.tgz"
+  integrity sha512-q69ANSoNQ45YXSzzDayPjj8JI6eObVzzOJb45tv9+AwXcLbalHjz7uLGExtITbwMx4X6Vpez6Lf5+TSgt+916g==
+  dependencies:
+    "@iconify/types" "^2.0.0"
+
 "@iconify/icons-mdi@^1.2.48":
   version "1.2.48"
   resolved "https://registry.npmjs.org/@iconify/icons-mdi/-/icons-mdi-1.2.48.tgz"
